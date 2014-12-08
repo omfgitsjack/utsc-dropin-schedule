@@ -32,7 +32,7 @@ class DomCrawler implements IDomCrawler
 	 */
 	public function getCrawlObj($url)
 	{
-
+		return $this->client->request('GET', $url);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class DomCrawler implements IDomCrawler
 	 */
 	public function scrapeActivitySessions($crawlerObj)
 	{
-
+		return $this->domScraper->scrapeActivitySessions($crawlerObj);
 	}
 
 	/**

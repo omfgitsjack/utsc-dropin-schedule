@@ -27,7 +27,13 @@ class ScheduleDomCrawler implements IScheduleCrawler
 	 */
 	public function crawlUTSCSchedule()
 	{
-		return 'Schedule';
+		// Retrieve crawl object
+		$crawlObj = $this->domCrawler->getCrawlObj('http://www.utsc.utoronto.ca/athletics/calendar-node-field-date-time/month');
+		
+		// Scrape for unique activities
+		$activities = $this->domCrawler->scrapeActivitySessions($crawlObj);
+
+		return $activities;
 	}
 
 
