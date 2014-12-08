@@ -18,7 +18,7 @@ class DomScraper implements IDomScraper
 	 */
 	public function scrapeActivitySessions($crawlObj)
 	{
-
+		return "ActivitySessions";
 	}
 
 	/**

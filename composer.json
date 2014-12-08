@@ -8,8 +8,10 @@
 		"laravel/framework": "4.2.*",
 		"phpunit/phpunit": "4.3.*",
 		"fabpot/goutte": "v2.0.1",
-		"mockery/mockery": "dev-master",
-		"codeception/codeception": "dev-master"
+		"codeception/codeception": "dev-master",
+		"codeception/mockery-module": "*",
+		"codeception/specify": "*",
+		"codeception/verify": "*"
 	},
 	"autoload": {
 		"classmap": [
