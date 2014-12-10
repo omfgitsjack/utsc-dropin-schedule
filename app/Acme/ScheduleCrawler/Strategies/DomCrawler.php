@@ -42,7 +42,7 @@ class DomCrawler implements IDomCrawler
 	 */
 	public function scrapeUniqueActivities($crawlerObj)
 	{
-		return $this->domScraper->scrapeActivitySessions('crawlerObj');
+		return $this->domScraper->scrapeUniqueActivities($crawlerObj);
 	}
 
 	/**
