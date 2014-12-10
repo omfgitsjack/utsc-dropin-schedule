@@ -1,6 +1,7 @@
 <?php namespace Acme\ScheduleCrawler\Strategies;
 
 use Acme\ScheduleCrawler\Interfaces\IDomScraper;
+use Underscore\Types\Arrays;
 
 
 /**
@@ -28,27 +29,17 @@ class DomScraper implements IDomScraper
 	 */
 	public function scrapeUniqueActivities($crawlObj)
 	{
-		$days = $this->getActivitySessionsForOneMonth($crawlObj);
 		$activities = [];
+
+		$days = $this->getActivitySessionsForOneMonth($crawlObj);
 
 		foreach ($days as $day)	
 		{
 			foreach ($day['activity_sessions'] as $activitySession)
 			{
-				//var_dump($activitySession['activity']);
-				// Iterate through activities list and check if it exists.
-				$activityFound = false;
-				foreach ($activities as $activity)
+				if (!Arrays::contains($activities, $activitySession['activity']))
 				{
-					if ($activity == $activitySession['activity'])
-					{
-						$activityFound = true;
-						break;
-					}
-				}
-				if (!$activityFound)
-				{
-					array_push($activities, $activitySession['activity']);
+					$activities = Arrays::append($activities, $activitySession['activity']);
 				}
 			}
 		}

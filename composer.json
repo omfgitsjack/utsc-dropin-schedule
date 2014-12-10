@@ -11,7 +11,8 @@
 		"codeception/codeception": "dev-master",
 		"codeception/mockery-module": "*",
 		"codeception/specify": "*",
-		"codeception/verify": "*"
+		"codeception/verify": "*",
+		"anahkiasen/underscore-php": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
