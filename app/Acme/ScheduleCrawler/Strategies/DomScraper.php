@@ -18,65 +18,7 @@ class DomScraper implements IDomScraper
 	 */
 	public function scrapeActivitySessions($crawlObj)
 	{
-		// Filter by days of the month
-		$days = $crawlObj->filter('td.single-day')->each(function($node, $i) {
-
-			// Setup empty object to hold session values
-			$day = [];
-
-			// Assign date & day of week
-			$day['date'] = $node->attr('data-date');
-			$day['day_of_week'] = $node->attr('headers');
-
-			// Retrieve activity sessions in day
-			$day['activity_sessions'] = $node->filter('.item')->
-			filter('.field-content')->each(function($item, $i) {
-
-				$session = [];
-
-				$fields = $item->filter('.views-field')->each(function($item, $i) {
-	
-					switch ($i)
-					{
-						// Activity
-						case 0:
-							return trim($item->text());
-						// Date time
-						case 1:
-							$times = $item->filter('.date-display-single')->filter('span')->each(function($date) {
-								return $date->attr('content');
-							});
-							return $times;
-						// Junk
-						case 2:
-							return;
-						// Location
-						case 3:
-							return trim($item->text());
-						// Category
-						case 4:
-							return trim($item->text());
-					}
-
-				});
-
-				$session = 
-				[
-					'activity'   => $fields[0],
-					'start_time' => $fields[1][1],
-					'end_time'   => $fields[1][2],
-					'location'   => $fields[3],
-					'category'   => $fields[4]
-				];
-
-				return $session;
-
-			});
-
-			return $day;
-		});
-
-		return $days;
+		return $this->getActivitySessionsForOneMonth($crawlObj);
 	}
 
 	/**
@@ -89,28 +31,89 @@ class DomScraper implements IDomScraper
 
 	}
 
-	private function getScheduleBody($crawlObj)
+	/**
+	 * Gets all activity sessions for one month
+	 * @param  Crawler $crawlObj Crawler object of UTSC Schedule
+	 * @return array             Array of activity sessions with day meta data
+	 */
+	private function getActivitySessionsForOneMonth($crawlObj)
 	{
-		return $crawlObj->filter('tbody');
-	}
+		// Iterate through every day in current month
+		$days = $crawlObj->filter('td.single-day')->each(function($curDay) {
 
-	private function getSessionText($crawler, $filter)
-	{
-		$textArray = $this->getRawSessionTextArray($crawler, $filter);
-		// textArray should only contain one item.
-		$text = $textArray[0];
-		// strip trailing white spaces
-		$text = trim($text);
+			// Setup empty object to hold session values
+			$day = [
+				'date' => $curDay->attr('data-date'),
+				'day_of_week' => $curDay->attr('headers'),
+				'activity_sessions' => $this->getActivitySessionsForOneDay($curDay)
+			];
 
-		return $text;
-	}
-
-	private function getRawSessionTextArray($crawler, $filter)
-	{
-		return $crawler->filter($filter)->each(function($session, $i) {		
-			dd($session->text());
-			return $session->text();
+			return $day;
 		});
+
+		return $days;
+	}
+
+	/**
+	 * Gets all activity sessions for one day
+	 * @param  Crawler $singleDay Crawler object of one day in UTSC Schedule
+	 * @return array              Array of Activity Sessions
+	 */
+	private function getActivitySessionsForOneDay($singleDay)
+	{
+		$activitySessions = $singleDay->filter('.item')->filter('.field-content')->
+		each(function($activitySession) {
+
+			return $this->getActivitySessionFields($activitySession);
+		});
+
+		return $activitySessions;
+	}
+
+	/**
+	 * Gets activity session fields for one activity session
+	 * @param  Crawler $activitySession Crawler object for one activity session
+	 * @return object                   JSON object of activity session's activity, start&end time, location and category
+	 */
+	private function getActivitySessionFields($activitySession)
+	{
+		$fields = $activitySession->filter('.views-field')->each(function($item, $i) {
+			
+			// Horrible way of retrieving content, cannot be helped because 
+			// location class tag has a trailing ']'
+			switch ($i)
+			{
+				// Activity
+				case 0:
+					return trim($item->text());
+				// Date time
+				case 1:
+					$times = $item->filter('.date-display-single')->filter('span')->each(function($date) {
+						return $date->attr('content');
+					});
+					return $times;
+				// Junk
+				case 2:
+					return;
+				// Location
+				case 3:
+					return trim($item->text());
+				// Category
+				case 4:
+					return trim($item->text());
+			}
+
+		});
+
+		$formattedFields = [
+			'activity'   => $fields[0],
+			'start_time' => new \DateTime($fields[1][1]),
+			'end_time'   => new \DateTime($fields[1][2]),
+			'location'   => $fields[3],
+			'category'   => $fields[4]
+		];
+
+		return $formattedFields;
 	}
 
 }
