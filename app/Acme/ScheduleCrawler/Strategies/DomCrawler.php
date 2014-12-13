@@ -1,13 +1,15 @@
-<?php namespace Acme\ScheduleCrawler\Strategies;
+<?php namespace Acme\Schedule\Strategies;
 
 // Inhouse dependencies
-use Acme\ScheduleCrawler\Interfaces\IDomCrawler;
-use Acme\ScheduleCrawler\Interfaces\IDomScraper;
-use Acme\ScheduleCrawler\Interfaces\IActivityRepository;
-use Acme\ScheduleCrawler\Interfaces\IActivitySessionRepository;
+use Acme\Schedule\Interfaces\IDomCrawler;
+use Acme\Schedule\Interfaces\IDomScraper;
+use Acme\Schedule\Interfaces\IActivityRepository;
+use Acme\Schedule\Interfaces\IActivitySessionRepository;
+use Acme\Schedule\Interfaces\ICrawlSessionRepository;
 
 // Third party dependencies
 use Goutte\Client;
+use Illuminate\Support\Collection;
 
 
 /**
@@ -22,6 +24,7 @@ class DomCrawler implements IDomCrawler
 	protected $client;
 	protected $activity;
 	protected $activitySession;
+	protected $crawlSession;
 
 	/**
 	 * Crawler utilizes DomCrawler
@@ -29,12 +32,18 @@ class DomCrawler implements IDomCrawler
 	 * @param Client     					$client      Goutte Web Crawler
 	 */
 	function __construct(IDomScraper $domScraper, Client $client, IActivityRepository $activity, 
-		IActivitySessionRepository $activitySession)
+		IActivitySessionRepository $activitySession, ICrawlSessionRepository $crawlSession)
 	{
 		$this->domScraper = $domScraper;
 		$this->client = $client;
 		$this->activity = $activity;
 		$this->activitySession = $activitySession;
+		$this->crawlSession = $crawlSession;
+	}
+
+	public function createCrawlSession()
+	{
+		return $this->crawlSession->store([]);
 	}
 
 	/**
@@ -82,7 +91,7 @@ class DomCrawler implements IDomCrawler
 	 * @param  array $activitySessions Activity Sessions
 	 * @return void
 	 */
-	public function storeActivitySessions($activitySessions)
+	public function storeActivitySessions($activitySessions, $crawlSession)
 	{
 		foreach ($activitySessions as $day)
 		{
@@ -95,7 +104,8 @@ class DomCrawler implements IDomCrawler
 						'date' => $activitySession['start_time'],
 						'start_time' => $activitySession['start_time'],
 						'end_time' => $activitySession['end_time'],
-						'activity_id' => $activity['id']
+						'activity_id' => $activity['id'],
+						'crawl_session_id' => $crawlSession['id']
 					]);
 			}
 		}

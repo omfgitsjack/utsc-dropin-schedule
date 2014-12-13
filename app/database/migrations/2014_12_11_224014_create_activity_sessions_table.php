@@ -16,10 +16,12 @@ class CreateActivitysessionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('activity_id')->unsigned();
+			$table->integer('crawl_session_id')->unsigned();
 			$table->timestamp('date');
 			$table->timestamp('start_time');
 			$table->timestamp('end_time');
 			$table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+			$table->foreign('crawl_session_id')->references('id')->on('crawl_sessions')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

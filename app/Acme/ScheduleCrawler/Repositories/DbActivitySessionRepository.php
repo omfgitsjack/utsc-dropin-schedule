@@ -1,7 +1,7 @@
-<?php namespace Acme\ScheduleCrawler\Repositories;
+<?php namespace Acme\Schedule\Repositories;
 
 // Inhouse dependencies
-use Acme\ScheduleCrawler\Interfaces\IActivitySessionRepository;
+use Acme\Schedule\Interfaces\IActivitySessionRepository;
 use ActivitySession;
 
 
@@ -49,9 +49,9 @@ class DbActivitySessionRepository implements IActivitySessionRepository
 	 * @param  string $category Category of activity
 	 * @return array            Array of activities for this week
 	 */
-	public function getSessionsForThisWeek($activity, $category)
+	public function getSessionsForThisWeek($activityId)
 	{
-		return $this->model->getAll();
+		return $this->model->where('activity_id', $activityId)->where('crawl_session_id')->get();
 	}
 
 }

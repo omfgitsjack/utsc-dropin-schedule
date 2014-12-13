@@ -1,7 +1,7 @@
-<?php namespace Acme\ScheduleCrawler\Strategies;
+<?php namespace Acme\Schedule\Strategies;
 
 // Inhouse dependencies
-use Acme\ScheduleCrawler\Interfaces\IDomScraper;
+use Acme\Schedule\Interfaces\IDomScraper;
 
 // Third party dependencies
 use Illuminate\Support\Collection;
@@ -47,9 +47,9 @@ class DomScraper implements IDomScraper
 					'category' => $activitySession['category']
 				];
 
-				if ($activities->contains($activity))
+				if (!$activities->contains($activity))
 				{
-					$activities = $activities->push($activity);
+					$activities->push($activity);
 				}
 			}
 		}

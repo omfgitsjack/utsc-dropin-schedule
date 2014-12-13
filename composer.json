@@ -12,7 +12,8 @@
 		"codeception/mockery-module": "*",
 		"codeception/specify": "*",
 		"codeception/verify": "*",
-		"way/generators": "~2.0"
+		"way/generators": "~2.0",
+		"nesbot/Carbon": "*"
 	},
 	"autoload": {
 		"classmap": [

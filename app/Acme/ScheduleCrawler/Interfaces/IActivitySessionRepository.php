@@ -1,4 +1,4 @@
-<?php namespace Acme\ScheduleCrawler\Interfaces;
+<?php namespace Acme\Schedule\Interfaces;
 
 
 
@@ -11,6 +11,6 @@ Interface IActivitySessionRepository {
 	public function storeMultiple($activitySessions);
 
 	// Stores sessions for this week
-	public function getSessionsForThisWeek($activity, $category);
+	public function getSessionsForThisWeek($activityId);
 
 }

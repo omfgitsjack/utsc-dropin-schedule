@@ -1,4 +1,4 @@
-<?php namespace Acme\ScheduleCrawler\Interfaces;
+<?php namespace Acme\Schedule\Interfaces;
 
 
 /**
@@ -19,6 +19,6 @@ Interface IDomCrawler {
 	public function storeActivities($activities);
 
 	// Store Activity Sessions that have been scraped
-	public function storeActivitySessions($activitySessions);
+	public function storeActivitySessions($activitySessions, $crawlSession);
 
 }

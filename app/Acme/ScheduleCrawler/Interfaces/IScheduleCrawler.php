@@ -1,4 +1,4 @@
-<?php namespace Acme\ScheduleCrawler\Interfaces;
+<?php namespace Acme\Schedule\Interfaces;
 
 
 /**

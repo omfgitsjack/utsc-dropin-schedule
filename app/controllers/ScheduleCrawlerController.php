@@ -1,6 +1,6 @@
 <?php
 
-use Acme\ScheduleCrawler\Interfaces\IScheduleCrawler;
+use Acme\Schedule\Interfaces\IScheduleCrawler;
 
 
 class ScheduleCrawlerController extends BaseController {

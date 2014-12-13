@@ -11,30 +11,40 @@ class ScheduleCrawlerServiceProvider extends ServiceProvider {
     {
         // Repositories
         $this->app->bind(
-            'Acme\ScheduleCrawler\Interfaces\IActivityRepository', 
-            'Acme\ScheduleCrawler\Repositories\DbActivityRepository'
+            'Acme\Schedule\Interfaces\IActivityRepository', 
+            'Acme\Schedule\Repositories\DbActivityRepository'
         );
 
         $this->app->bind(
-            'Acme\ScheduleCrawler\Interfaces\IActivitySessionRepository', 
-            'Acme\ScheduleCrawler\Repositories\DbActivitySessionRepository'
+            'Acme\Schedule\Interfaces\IActivitySessionRepository', 
+            'Acme\Schedule\Repositories\DbActivitySessionRepository'
+        );
+
+        $this->app->bind(
+            'Acme\Schedule\Interfaces\ICrawlSessionRepository', 
+            'Acme\Schedule\Repositories\DbCrawlSessionRepository'
         );
 
         // Strategies
         $this->app->bind(
-            'Acme\ScheduleCrawler\Interfaces\IDomCrawler', 
-            'Acme\ScheduleCrawler\Strategies\DomCrawler'
+            'Acme\Schedule\Interfaces\IDomCrawler', 
+            'Acme\Schedule\Strategies\DomCrawler'
         );
 
         $this->app->bind(
-            'Acme\ScheduleCrawler\Interfaces\IDomScraper', 
-            'Acme\ScheduleCrawler\Strategies\DomScraper'
+            'Acme\Schedule\Interfaces\IDomScraper', 
+            'Acme\Schedule\Strategies\DomScraper'
         );
 
         // Services
         $this->app->bind(
-            'Acme\ScheduleCrawler\Interfaces\IScheduleCrawler', 
-            'Acme\ScheduleCrawler\Services\ScheduleDomCrawler'
+            'Acme\Schedule\Interfaces\IScheduleCrawler', 
+            'Acme\Schedule\Services\ScheduleDomCrawler'
+        );
+
+        $this->app->bind(
+            'Acme\Schedule\Interfaces\IScheduleRetriever', 
+            'Acme\Schedule\Services\ScheduleRetriever'
         );
     }
 

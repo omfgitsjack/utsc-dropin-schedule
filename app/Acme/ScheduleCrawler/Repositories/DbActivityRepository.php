@@ -1,8 +1,8 @@
-<?php namespace Acme\ScheduleCrawler\Repositories;
+<?php namespace Acme\Schedule\Repositories;
 
 // Inhouse dependencies
 use Activity;
-use Acme\ScheduleCrawler\Interfaces\IActivityRepository;
+use Acme\Schedule\Interfaces\IActivityRepository;
 
 
 class DbActivityRepository implements IActivityRepository

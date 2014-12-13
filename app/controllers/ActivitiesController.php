@@ -1,6 +1,6 @@
 <?php
 
-use Acme\ScheduleCrawler\Interfaces\IActivityRepository;
+use Acme\Schedule\Interfaces\IActivityRepository;
 
 
 class ActivitiesController extends \BaseController {
@@ -18,7 +18,7 @@ class ActivitiesController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getDropins()
 	{
 		return $this->activity->getDropins();
 	}

@@ -1,8 +1,8 @@
-<?php namespace Acme\ScheduleCrawler\Services;
+<?php namespace Acme\Schedule\Services;
 
 // Inhouse dependencies
-use Acme\ScheduleCrawler\Interfaces\IScheduleCrawler;
-use Acme\ScheduleCrawler\Interfaces\IDomCrawler;
+use Acme\Schedule\Interfaces\IScheduleCrawler;
+use Acme\Schedule\Interfaces\IDomCrawler;
 
 
 /**
@@ -29,8 +29,13 @@ class ScheduleDomCrawler implements IScheduleCrawler
 	 */
 	public function crawlUTSCSchedule()
 	{
+		$utsc_link = 'http://www.utsc.utoronto.ca/athletics/calendar-node-field-date-time/month';
+
+		// Create new Crawl Session
+		$crawlSession = $this->domCrawler->createCrawlSession($utsc_link);
+
 		// Retrieve crawl object
-		$crawlObj = $this->domCrawler->getCrawlerObj('http://www.utsc.utoronto.ca/athletics/calendar-node-field-date-time/month');
+		$crawlObj = $this->domCrawler->getCrawlerObj($utsc_link);
 		
 		// Scrape for this month's activity sessions
 		$activitySessions = $this->domCrawler->scrapeActivitySessions($crawlObj);
@@ -42,6 +47,6 @@ class ScheduleDomCrawler implements IScheduleCrawler
 		$this->domCrawler->storeActivities($activities);
 		
 		// Store activity sessions
-		$this->domCrawler->storeActivitySessions($activitySessions);
+		$this->domCrawler->storeActivitySessions($activitySessions, $crawlSession);
 	}
 }
