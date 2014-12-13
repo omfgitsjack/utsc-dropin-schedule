@@ -9,6 +9,18 @@ class ScheduleCrawlerServiceProvider extends ServiceProvider {
 
     public function register()
     {
+        // Repositories
+        $this->app->bind(
+            'Acme\ScheduleCrawler\Interfaces\IActivityRepository', 
+            'Acme\ScheduleCrawler\Repositories\DbActivityRepository'
+        );
+
+        $this->app->bind(
+            'Acme\ScheduleCrawler\Interfaces\IActivitySessionRepository', 
+            'Acme\ScheduleCrawler\Repositories\DbActivitySessionRepository'
+        );
+
+        // Strategies
         $this->app->bind(
             'Acme\ScheduleCrawler\Interfaces\IDomCrawler', 
             'Acme\ScheduleCrawler\Strategies\DomCrawler'
@@ -19,6 +31,7 @@ class ScheduleCrawlerServiceProvider extends ServiceProvider {
             'Acme\ScheduleCrawler\Strategies\DomScraper'
         );
 
+        // Services
         $this->app->bind(
             'Acme\ScheduleCrawler\Interfaces\IScheduleCrawler', 
             'Acme\ScheduleCrawler\Services\ScheduleDomCrawler'

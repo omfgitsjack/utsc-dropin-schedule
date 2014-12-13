@@ -1,58 +1,60 @@
 <?php namespace Acme\ScheduleCrawler\Strategies;
 
+// Inhouse dependencies
 use Acme\ScheduleCrawler\Interfaces\IDomCrawler;
 use Acme\ScheduleCrawler\Interfaces\IDomScraper;
+use Acme\ScheduleCrawler\Interfaces\IActivityRepository;
+use Acme\ScheduleCrawler\Interfaces\IActivitySessionRepository;
+
+// Third party dependencies
 use Goutte\Client;
 
 
 /**
- * Goutte powered Dom Crawler
+ * Goutte powered Dom Crawler that scrapes and stores activity & 
+ * their activity sessions
  */
 class DomCrawler implements IDomCrawler
 {
 
+	// Dependencies
 	protected $domScraper;
 	protected $client;
+	protected $activity;
+	protected $activitySession;
 
 	/**
 	 * Crawler utilizes DomCrawler
-	 * @param DomScraper $domScrapper DomScraper object
-	 * @param Client     $client      Goutte Web Crawler     
+	 * @param DomScraper 					$domScrapper DomScraper object
+	 * @param Client     					$client      Goutte Web Crawler
 	 */
-	function __construct(IDomScraper $domScraper, Client $client)
+	function __construct(IDomScraper $domScraper, Client $client, IActivityRepository $activity, 
+		IActivitySessionRepository $activitySession)
 	{
 		$this->domScraper = $domScraper;
 		$this->client = $client;
+		$this->activity = $activity;
+		$this->activitySession = $activitySession;
 	}
 
 	/**
-	 * Retrieves CrawlObj for a given url
+	 * Retrieves CrawlerObj for a given url
 	 * @param  string $url Url we're crawling for
-	 * @return CrawlObj      Crawler Object
+	 * @return Crawler      Crawler Object
 	 */
-	public function getCrawlObj($url)
+	public function getCrawlerObj($url)
 	{
 		return $this->client->request('GET', $url);
 	}
 
 	/**
 	 * Scrapes unique activities from a crawler object
-	 * @param  CrawlerObj $crawlerObj Crawler Object
-	 * @return array                  Array of unique activities
+	 * @param  array $activitySessions Array of this month's activity sessions
+	 * @return array                   Array of unique activities
 	 */
-	public function scrapeUniqueActivities($crawlerObj)
+	public function scrapeActivities($activitySessions)
 	{
-		return $this->domScraper->scrapeUniqueActivities($crawlerObj);
-	}
-
-	/**
-	 * Stores all activities into database
-	 * @param  array $activityList List of Activity objects
-	 * @return void
-	 */
-	public function storeActivities($activityList)
-	{
-
+		return $this->domScraper->scrapeUniqueActivities($activitySessions);
 	}
 
 	/**
@@ -66,14 +68,36 @@ class DomCrawler implements IDomCrawler
 	}
 
 	/**
-	 * Stores all activity sessions into database
-	 * @param  array $sessions List of activity sessions
+	 * Stores activities
+	 * @param  array $activities activities
 	 * @return void
 	 */
-	public function storeActivitySessions($sessions)
+	public function storeActivities($activities)
 	{
-
+		$this->activity->storeMultiple($activities);
 	}
 
-}
+	/**
+	 * Stores activity sessions
+	 * @param  array $activitySessions Activity Sessions
+	 * @return void
+	 */
+	public function storeActivitySessions($activitySessions)
+	{
+		foreach ($activitySessions as $day)
+		{
+			foreach ($day['activity_sessions'] as $activitySession)
+			{
+				// Retrieve Activity
+				$activity = $this->activity->getByActivityAndCategory($activitySession['activity'], $activitySession['category']);
 
+				$session = $this->activitySession->storeOne([
+						'date' => $activitySession['start_time'],
+						'start_time' => $activitySession['start_time'],
+						'end_time' => $activitySession['end_time'],
+						'activity_id' => $activity['id']
+					]);
+			}
+		}
+	}
+}

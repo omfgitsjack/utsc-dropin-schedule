@@ -17,3 +17,4 @@ Route::get('/', function()
 });
 
 Route::get('api/crawl', 'ScheduleCrawlerController@crawlUTSCSchedule');
+Route::get('api/dropins', 'ActivitiesController@index');

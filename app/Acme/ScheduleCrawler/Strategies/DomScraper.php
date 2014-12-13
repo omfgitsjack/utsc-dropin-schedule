@@ -1,7 +1,10 @@
 <?php namespace Acme\ScheduleCrawler\Strategies;
 
+// Inhouse dependencies
 use Acme\ScheduleCrawler\Interfaces\IDomScraper;
-use Underscore\Types\Arrays;
+
+// Third party dependencies
+use Illuminate\Support\Collection;
 
 
 /**
@@ -10,36 +13,43 @@ use Underscore\Types\Arrays;
 class DomScraper implements IDomScraper
 {
 
-	function __construct() {}
-
-	/**
-	 * Scrapes all activity sessions in crawl object
-	 * @param  CrawlObj $crawlObj Crawler object
-	 * @return array
-	 */
-	public function scrapeActivitySessions($crawlObj)
-	{
-		return $this->getActivitySessionsForOneMonth($crawlObj);
+	function __construct() {
 	}
 
 	/**
 	 * Scrapes all activity sessions in crawl object
-	 * @param  CrawlObj $crawlObj Crawler Object
+	 * @param  Crawler $crawlerObj Crawler object
 	 * @return array
 	 */
-	public function scrapeUniqueActivities($crawlObj)
+	public function scrapeActivitySessions($crawlerObj)
 	{
-		$activities = [];
+		$activitySessions = $this->getActivitySessionsForOneMonth($crawlerObj);
 
-		$days = $this->getActivitySessionsForOneMonth($crawlObj);
+		return $activitySessions;
+	}
 
-		foreach ($days as $day)	
+	/**
+	 * Scrapes all activity sessions in crawl object
+	 * @param  array $activitySessions Array of this month's activity sessions
+	 * @return array
+	 */
+	public function scrapeUniqueActivities($activitySessions)
+	{
+		$activities = new Collection();
+
+		foreach ($activitySessions as $day)	
 		{
 			foreach ($day['activity_sessions'] as $activitySession)
 			{
-				if (!Arrays::contains($activities, $activitySession['activity']))
+				$activity = 
+				[
+					'activity' => $activitySession['activity'],
+					'category' => $activitySession['category']
+				];
+
+				if ($activities->contains($activity))
 				{
-					$activities = Arrays::append($activities, $activitySession['activity']);
+					$activities = $activities->push($activity);
 				}
 			}
 		}
@@ -47,15 +57,18 @@ class DomScraper implements IDomScraper
 		return $activities;
 	}
 
+	/// HELPER FUNCTIONS
+	/// ------------------------------------------------------------------------
+
 	/**
 	 * Gets all activity sessions for one month
-	 * @param  Crawler $crawlObj Crawler object of UTSC Schedule
+	 * @param  Crawler $crawlerObj Crawler object of UTSC Schedule
 	 * @return array             Array of activity sessions with day meta data
 	 */
-	private function getActivitySessionsForOneMonth($crawlObj)
+	private function getActivitySessionsForOneMonth($crawlerObj)
 	{
 		// Iterate through every day in current month
-		$days = $crawlObj->filter('td.single-day')->each(function($curDay) {
+		$days = $crawlerObj->filter('td.single-day')->each(function($curDay) {
 
 			// Setup empty object to hold session values
 			$day = [
@@ -123,8 +136,8 @@ class DomScraper implements IDomScraper
 
 		$formattedFields = [
 			'activity'   => $fields[0],
-			'start_time' => new \DateTime($fields[1][1]),
-			'end_time'   => new \DateTime($fields[1][2]),
+			'start_time' => (new \DateTime($fields[1][1]))->format('Y-m-d H:i:s'),
+			'end_time'   => (new \DateTime($fields[1][2]))->format('Y-m-d H:i:s'),
 			'location'   => $fields[3],
 			'category'   => $fields[4]
 		];

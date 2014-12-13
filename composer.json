@@ -12,7 +12,7 @@
 		"codeception/mockery-module": "*",
 		"codeception/specify": "*",
 		"codeception/verify": "*",
-		"anahkiasen/underscore-php": "dev-master"
+		"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [

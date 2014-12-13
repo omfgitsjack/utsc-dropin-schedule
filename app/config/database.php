@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'proj13',
+			'database'  => 'utscschedule',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

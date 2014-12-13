@@ -6,8 +6,10 @@
  */
 Interface IDomScraper {
 
-	public function scrapeActivitySessions($crawlObj);
+	// Scrapes Activity Sessions from html
+	public function scrapeActivitySessions($crawlerObj);
 
-	public function scrapeUniqueActivities($crawlObj);
+	// Scrapes Unique Activities from scraped Activity Sessions
+	public function scrapeUniqueActivities($activitySessions);
 
 }

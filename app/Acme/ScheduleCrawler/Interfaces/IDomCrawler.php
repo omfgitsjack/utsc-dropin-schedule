@@ -6,14 +6,19 @@
  */
 Interface IDomCrawler {
 
-	public function getCrawlObj($url);
+	// Get Crawler Object for a specific URL
+	public function getCrawlerObj($url);
 
-	public function scrapeUniqueActivities($crawlerObj);
+	// Scrape Activities
+	public function scrapeActivities($crawlerObj);
 
-	public function storeActivities($activityList);
-
+	// Scrape Activity Sessions
 	public function scrapeActivitySessions($crawlerObj);
 
-	public function storeActivitySessions($sessions);
+	// Store Activities that have been scraped
+	public function storeActivities($activities);
+
+	// Store Activity Sessions that have been scraped
+	public function storeActivitySessions($activitySessions);
 
 }
