@@ -3,7 +3,10 @@
 // Inhouse dependencies
 use Acme\Schedule\Interfaces\IScheduleCrawler;
 use Acme\Schedule\Interfaces\IDomCrawler;
+use Acme\Schedule\Interfaces\ICrawlSessionRepository;
 
+// 3rd party dependencies
+use Carbon\Carbon;
 
 /**
  * Goutte-powered DOM Crawler and Scraper
@@ -13,14 +16,16 @@ class ScheduleDomCrawler implements IScheduleCrawler
 
 	// Dependencies
 	protected $domCrawler;
+	protected $crawlSession;
 
 	/**
 	 * Crawler utilizes DomCrawler
 	 * @param IDomCrawler         $domCrawler  DomCrawler object
 	 */
-	function __construct(IDomCrawler $domCrawler)
+	function __construct(IDomCrawler $domCrawler, ICrawlSessionRepository $crawlSession)
 	{
 		$this->domCrawler = $domCrawler;
+		$this->crawlSession = $crawlSession;
 	}
 
 	/**
@@ -35,6 +40,10 @@ class ScheduleDomCrawler implements IScheduleCrawler
 		$crawlSession = $this->domCrawler->createCrawlSession($utsc_link);
 		$crawlObj = $this->domCrawler->getCrawlerObj($utsc_link);
 		
+		// Start timing
+		$startTime = Carbon::now();
+		$this->crawlSession->updateStartTime($crawlSession, $startTime);
+
 		// Scrape for this month's activity sessions and activities
 		$activitySessions = $this->domCrawler->scrapeActivitySessions($crawlObj);
 		$activities = $this->domCrawler->scrapeActivities($activitySessions);
@@ -42,5 +51,12 @@ class ScheduleDomCrawler implements IScheduleCrawler
 		// Store activities & their sessions
 		$this->domCrawler->storeActivities($activities);
 		$this->domCrawler->storeActivitySessions($activitySessions, $crawlSession);
+
+		// End timing
+		$endTime = Carbon::now();
+		$this->crawlSession->updateEndTime($crawlSession, $endTime);
+		$this->crawlSession->updateDuration($crawlSession, $startTime->diffInSeconds($endTime));
+
+		return $crawlSession;
 	}
 }

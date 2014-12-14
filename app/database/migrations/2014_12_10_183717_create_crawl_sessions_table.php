@@ -15,6 +15,9 @@ class CreateCrawlSessionsTable extends Migration {
 		Schema::create('crawl_sessions', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->timestamp('start_time')->nullable();
+			$table->timestamp('end_time')->nullable();
+			$table->integer('duration')->nullable();
 			$table->timestamps();
 		});
 	}

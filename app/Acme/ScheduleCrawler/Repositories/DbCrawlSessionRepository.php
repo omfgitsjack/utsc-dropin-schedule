@@ -30,4 +30,22 @@ class DbCrawlSessionRepository implements ICrawlSessionRepository
 		return $this->model->orderBy('id', 'desc')->first();
 	}
 
+	public function updateStartTime($crawlSession, $time)
+	{
+		$crawlSession['start_time'] = $time;
+		$crawlSession->save();
+	}
+
+	public function updateEndTime($crawlSession, $time)
+	{
+		$crawlSession['end_time'] = $time;
+		$crawlSession->save();
+	}
+
+	public function updateDuration($crawlSession, $time)
+	{
+		$crawlSession['duration'] = $time;
+		$crawlSession->save();
+	}
+
 }

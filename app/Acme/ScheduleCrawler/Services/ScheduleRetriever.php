@@ -5,7 +5,7 @@ use Acme\Schedule\Interfaces\IScheduleRetriever;
 use Acme\Schedule\Interfaces\IActivitySessionRepository;
 use Acme\Schedule\Interfaces\ICrawlSessionRepository;
 
-// 3rd Party Dependencies
+// 3rd party Dependencies
 use Carbon\Carbon;
 
 /**
