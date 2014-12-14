@@ -5,7 +5,7 @@
 Interface IActivityRepository {
 
 	// Gets an activity by activity & category
-	public function getByActivityAndCategory($activity, $category);
+	public function getUniqueActivity($activity, $category, $womenOnly);
 
 	// Store one non duplicated activity
 	public function storeOne($activity);

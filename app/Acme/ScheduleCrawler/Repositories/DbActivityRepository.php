@@ -21,14 +21,18 @@ class DbActivityRepository implements IActivityRepository
 	}
 
 	/**
-	 * Gets activity by it's activity (name) and category
+	 * Gets activity by it's activity (name), category and women_only
 	 * @param  string $activity Activity name
 	 * @param  string $category Activity category
 	 * @return Activity         Activity
 	 */
-	public function getByActivityAndCategory($activity, $category)
+	public function getUniqueActivity($activity, $category, $womenOnly)
 	{
-		return $this->model->where('activity', $activity)->where('category', $category)->first();
+		return $this->model
+			->where('activity', $activity)
+			->where('category', $category)
+			->where('women_only', $womenOnly)
+			->first();
 	}
 
 	/**

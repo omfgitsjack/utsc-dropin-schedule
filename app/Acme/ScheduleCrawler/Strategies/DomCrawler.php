@@ -98,7 +98,10 @@ class DomCrawler implements IDomCrawler
 			foreach ($day['activity_sessions'] as $activitySession)
 			{
 				// Retrieve Activity
-				$activity = $this->activity->getByActivityAndCategory($activitySession['activity'], $activitySession['category']);
+				$activity = $this->activity->getUniqueActivity(
+					$activitySession['activity'], 
+					$activitySession['category'],
+					$activitySession['women_only']);
 
 				$session = $this->activitySession->storeOne([
 						'date' => $activitySession['start_time'],

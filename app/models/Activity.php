@@ -2,7 +2,7 @@
 
 class Activity extends \Eloquent {
 
-	protected $fillable = ['activity', 'category'];
+	protected $fillable = ['activity', 'category', 'women_only'];
 
 	public function activitySessions()
 	{

@@ -35,26 +35,26 @@ class DomScraper implements IDomScraper
 	 */
 	public function scrapeUniqueActivities($activitySessions)
 	{
-		$activities = new Collection();
+		$uniqueActivities = new Collection();
 
 		foreach ($activitySessions as $day)	
 		{
 			foreach ($day['activity_sessions'] as $activitySession)
 			{
-				$activity = 
-				[
+				$session = [
 					'activity' => $activitySession['activity'],
+					'women_only' => $activitySession['women_only'],
 					'category' => $activitySession['category']
 				];
 
-				if (!$activities->contains($activity))
+				if (!$uniqueActivities->contains($session))
 				{
-					$activities->push($activity);
-				}
+					$uniqueActivities->push($session);
+				}	
 			}
 		}
 
-		return $activities;
+		return $uniqueActivities->toArray();
 	}
 
 	/// HELPER FUNCTIONS
@@ -90,22 +90,30 @@ class DomScraper implements IDomScraper
 	 */
 	private function getActivitySessionsForOneDay($singleDay)
 	{
-		$activitySessions = $singleDay->filter('.item')->filter('.field-content')->
+		$masterActivitySessions = new Collection();
+
+		$activitySessionsList = $singleDay->filter('.item')->filter('.field-content')->
 		each(function($activitySession) {
 
 			return $this->getActivitySessionFields($activitySession);
 		});
 
-		return $activitySessions;
+		foreach ($activitySessionsList as $activitySession)
+		{
+			$masterActivitySessions = $masterActivitySessions->merge($activitySession);
+		}
+
+		return $masterActivitySessions;
 	}
 
 	/**
 	 * Gets activity session fields for one activity session
 	 * @param  Crawler $activitySession Crawler object for one activity session
-	 * @return object                   JSON object of activity session's activity, start&end time, location and category
+	 * @return array                    Array of activity sessions
 	 */
 	private function getActivitySessionFields($activitySession)
 	{
+		// Get fields
 		$fields = $activitySession->filter('.views-field')->each(function($item, $i) {
 			
 			// Horrible way of retrieving content, cannot be helped because 
@@ -131,18 +139,75 @@ class DomScraper implements IDomScraper
 				case 4:
 					return trim($item->text());
 			}
-
 		});
 
-		$formattedFields = [
-			'activity'   => $fields[0],
-			'start_time' => (new \DateTime($fields[1][1]))->format('Y-m-d H:i:s'),
-			'end_time'   => (new \DateTime($fields[1][2]))->format('Y-m-d H:i:s'),
-			'location'   => $fields[3],
-			'category'   => $fields[4]
-		];
+		// Detect if there are multiple activities in one session
+		$activities = $this->parseActivities($fields[0], $fields[4]);
+		$sessions = new Collection();
+		foreach ($activities as $activity)
+		{
+			$formattedFields = [
+				'activity'   => $activity['activity'],
+				'start_time' => (new \DateTime($fields[1][1]))->format('Y-m-d H:i:s'),
+				'end_time'   => (new \DateTime($fields[1][2]))->format('Y-m-d H:i:s'),
+				'location'   => $fields[3],
+				'category'   => $fields[4],
+				'women_only' => $activity['women_only']
+			];
+			$sessions->push($formattedFields);
+		}
 
-		return $formattedFields;
+		return $sessions;
+	}
+
+	private function parseActivities($activityTitle, $category)
+	{
+		$parsedActivities = new Collection();
+
+		// Check if it's a session with two sports i.e. Badminton/Table Tennis
+		$activities = explode("/", $activityTitle);
+
+		foreach ($activities as $activity)
+		{
+			$formatted_activity = [];
+
+			if ($this->isWomenOnlyActivity($activity))
+			{
+				$formatted_activity['activity'] = $this->stripWomen($activity);
+				$formatted_activity['category'] = $category;
+				$formatted_activity['women_only'] = true;
+			}
+			else
+			{
+				$formatted_activity['activity'] = $activity;
+				$formatted_activity['category'] = $category;
+				$formatted_activity['women_only'] = false;
+			}
+
+			$parsedActivities->push($formatted_activity);
+		}
+		return $parsedActivities;
+	}
+
+	private function isWomenOnlyActivity($activityTitle)
+	{
+		return str_contains($activityTitle, 'Women');
+	}
+
+	private function stripWomen($activityTitle)
+	{
+		if (starts_with($activityTitle, "Women's Only"))
+		{
+			return trim(explode("Women's Only", $activityTitle)[1]);
+		}
+		elseif (ends_with($activityTitle, "Women Only"))
+		{
+			return trim(explode(" - Women Only", $activityTitle)[0]);
+		}
+		else
+		{
+			return $activityTitle;
+		}
 	}
 
 }

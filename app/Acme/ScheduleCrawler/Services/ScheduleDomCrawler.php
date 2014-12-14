@@ -31,22 +31,16 @@ class ScheduleDomCrawler implements IScheduleCrawler
 	{
 		$utsc_link = 'http://www.utsc.utoronto.ca/athletics/calendar-node-field-date-time/month';
 
-		// Create new Crawl Session
+		// Setup CrawlSession and Crawler objects
 		$crawlSession = $this->domCrawler->createCrawlSession($utsc_link);
-
-		// Retrieve crawl object
 		$crawlObj = $this->domCrawler->getCrawlerObj($utsc_link);
 		
-		// Scrape for this month's activity sessions
+		// Scrape for this month's activity sessions and activities
 		$activitySessions = $this->domCrawler->scrapeActivitySessions($crawlObj);
-
-		// Scrape for this month's activities
 		$activities = $this->domCrawler->scrapeActivities($activitySessions);
 
-		// Store activities
+		// Store activities & their sessions
 		$this->domCrawler->storeActivities($activities);
-		
-		// Store activity sessions
 		$this->domCrawler->storeActivitySessions($activitySessions, $crawlSession);
 	}
 }

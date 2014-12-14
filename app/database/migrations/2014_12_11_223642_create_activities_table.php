@@ -17,7 +17,8 @@ class CreateActivitiesTable extends Migration {
 			$table->increments('id');
 			$table->string('activity');
 			$table->string('category');
-			$table->unique(['category','activity']);
+			$table->boolean('women_only');
+			$table->unique(['category','activity','women_only']);
 			$table->timestamps();
 		});
 	}
