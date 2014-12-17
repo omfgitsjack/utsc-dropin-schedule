@@ -7,3 +7,6 @@ composer.lock
 .DS_Store
 Thumbs.db
 /public/bower_components
+_ide_helper.php
+.idea
+utsc-sched
