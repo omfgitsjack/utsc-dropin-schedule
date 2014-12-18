@@ -16,7 +16,14 @@
 	<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
 
 	<!-- Components -->
-		<!-- Schedule -->
+		<!-- api -->
+		<script src="app/components/api/api.spec.js"></script>
+		<script src="app/components/api/api.routes.constant.js"></script>
+		<script src="app/components/api/api.constant.js"></script>
+		<script src="app/components/api/api.factory.js"></script>
+
+
+	<!-- Schedule -->
 		<script src="app/components/schedule/schedule.spec.js"></script>
 		<script src="app/components/schedule/schedule.factory.js"></script>
 

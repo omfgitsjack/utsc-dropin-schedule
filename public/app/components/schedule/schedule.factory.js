@@ -1,18 +1,31 @@
 (function(){
     "use strict";
 
-    angular.module('app.components.schedule')
-        .factory('scheduleFactory', ['$http', function($http) {
+    angular.module('app.components.schedule').factory('scheduleService', scheduleFactory);
 
-            return {
-                getDropins: function() {
-                    return $http.get('api/dropins').then(
-                        function (obj) {
-                            return obj.data;
-                        }
-                    )
+    scheduleFactory.$inject(['apiService', 'API_ROUTES_CONFIG']);
+    function scheduleFactory(apiService, API_ROUTES_CONFIG)
+    {
+        function getActivitySessions(activityId) {
+            return apiService.get(API_ROUTES_CONFIG.DROPINS + '/' + activityId).then(
+                function (activitySessions) {
+                    return activitySessions;
                 }
-            }
-        }]);
+            )
+        }
+
+        function getDropins() {
+            return apiService.get(API_ROUTES_CONFIG.DROPINS).then(
+                function (activities) {
+                    return activities;
+                }
+            )
+        }
+
+        return {
+            getDropins: getDropins,
+            getActivitySessions: getActivitySessions
+        }
+    }
 
 })();

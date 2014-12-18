@@ -1,9 +1,8 @@
-(function() {
-    "use strict";
+"use strict";
 
-    var app = {};
+/** Namepsace for the application */
+var app = {};
 
-    app.main = angular.module('app.main', [
-        'places'
-    ]);
-})()
+app.main = angular.module('app.main', [
+    'places'
+]);

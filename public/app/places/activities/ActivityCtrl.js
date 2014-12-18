@@ -7,7 +7,6 @@
 
             function init()
             {
-                $scope.helloworld = 'helloworld';
                 $scope.activities = activities;
             }
 
