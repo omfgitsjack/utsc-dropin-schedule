@@ -1,22 +1,26 @@
-/**
- * Created by Jack on 2014-12-17.
- */
 (function () {
     "use strict";
 
-    angular.module('places', [
-        'ui.router',
-        'app.places.activities',
-        'app.components.schedule'
-    ]);
-
+    /**
+     * UI-Router Configuration
+     */
     angular
-        .module('places')
-        .config(placesConfig);
+        .module('app.routes')
+        .config(routeConfig);
 
-    placesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function placesConfig($stateProvider, $urlRouterProvider) {
+    /**
+     * Dependency Injection
+     * @type {string[]}
+     */
+    routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
+    /**
+     * UI-Router state configuration
+     * @param $stateProvider
+     * @param $urlRouterProvider
+     */
+    function routeConfig($stateProvider, $urlRouterProvider)
+    {
         $urlRouterProvider.otherwise("/activities");
 
         $stateProvider
@@ -31,5 +35,4 @@
                 }
             });
     }
-
 })();

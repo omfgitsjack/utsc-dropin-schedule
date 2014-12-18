@@ -17,29 +17,33 @@
 
 	<!-- Components -->
 		<!-- api -->
-		<script src="app/components/api/api.spec.js"></script>
+		<script src="app/components/api/api.module.js"></script>
 		<script src="app/components/api/api.routes.constant.js"></script>
 		<script src="app/components/api/api.constant.js"></script>
 		<script src="app/components/api/api.factory.js"></script>
 
-
 	<!-- Schedule -->
-		<script src="app/components/schedule/schedule.spec.js"></script>
+		<script src="app/components/schedule/schedule.module.js"></script>
 		<script src="app/components/schedule/schedule.factory.js"></script>
 
+	<!-- Layout -->
+		<script src="app/layout/shell.controller.js"></script>
 
 	<!-- Places -->
 		<!-- Activities -->
-		<script src="app/places/activities/activities.spec.js"></script>
+		<script src="app/places/activities/activities.module.js"></script>
 		<script src="app/places/activities/activities.controller.js"></script>
 		<!-- Activity Sessions -->
-		<script src="app/places/activitysessions/activitysessions.spec.js"></script>
+		<script src="app/places/activitysessions/activitysessions.module.js"></script>
 		<script src="app/places/activitysessions/activitysessions.controller.js"></script>
 
-	<script src="app/places/places.js"></script>
+	<!-- App routes -->
+	<script src="app/routes.module.js"></script>
+	<script src="app/routes.config.js"></script>
+
 
 	<!-- App -->
-	<script src="app/app.js"></script>
+	<script src="app/app.module.js"></script>
 
 </body>
 </html>
