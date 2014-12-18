@@ -1,8 +1,7 @@
 /**
  * Created by Jack on 2014-12-17.
  */
-(function()
-{
+(function () {
     "use strict";
 
     angular.module('places', [
@@ -11,22 +10,26 @@
         'app.components.schedule'
     ]);
 
-    angular.module('places').config(['$stateProvider', '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider) {
+    angular
+        .module('places')
+        .config(placesConfig);
 
-            $urlRouterProvider.otherwise("/activities");
+    placesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    function placesConfig($stateProvider, $urlRouterProvider) {
 
-            $stateProvider
-                .state('activities', {
-                    url: "/activities",
-                    templateUrl: "app/places/activities/activities.tmpl.html",
-                    controller: "ActivityCtrl",
-                    resolve: {
-                        activities: function(scheduleFactory) {
-                            return scheduleFactory.getDropins();
-                        }
+        $urlRouterProvider.otherwise("/activities");
+
+        $stateProvider
+            .state('activities', {
+                url: "/activities",
+                templateUrl: "app/places/activities/activities.tmpl.html",
+                controller: "ActivityCtrl",
+                resolve: {
+                    activities: function (scheduleService) {
+                        return scheduleService.getDropins();
                     }
-                });
-        }]);
+                }
+            });
+    }
 
 })();

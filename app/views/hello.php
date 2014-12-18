@@ -31,7 +31,11 @@
 	<!-- Places -->
 		<!-- Activities -->
 		<script src="app/places/activities/activities.spec.js"></script>
-		<script src="app/places/activities/ActivityCtrl.js"></script>
+		<script src="app/places/activities/activities.controller.js"></script>
+		<!-- Activity Sessions -->
+		<script src="app/places/activitysessions/activitysessions.spec.js"></script>
+		<script src="app/places/activitysessions/activitysessions.controller.js"></script>
+
 	<script src="app/places/places.js"></script>
 
 	<!-- App -->
