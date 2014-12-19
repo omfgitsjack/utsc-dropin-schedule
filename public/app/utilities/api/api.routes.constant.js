@@ -4,7 +4,7 @@
     /**
      * API Resources constants
      */
-    angular.module("services.api")
+    angular.module("utilities.api")
         .constant('API_ROUTES_CONFIG',
         {
             DROPINS: 'dropins'

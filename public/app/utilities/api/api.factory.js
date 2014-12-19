@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('services.api')
+        .module('utilities.api')
         .factory('apiService', apiFactory);
 
     /**
