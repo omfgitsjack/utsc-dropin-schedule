@@ -15,12 +15,12 @@
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
 
-	<!-- Components -->
+	<!-- Services -->
 		<!-- api -->
-		<script src="app/components/api/api.module.js"></script>
-		<script src="app/components/api/api.routes.constant.js"></script>
-		<script src="app/components/api/api.constant.js"></script>
-		<script src="app/components/api/api.factory.js"></script>
+		<script src="app/services/api/api.module.js"></script>
+		<script src="app/services/api/api.routes.constant.js"></script>
+		<script src="app/services/api/api.constant.js"></script>
+		<script src="app/services/api/api.factory.js"></script>
 
 	<!-- Schedule -->
 		<script src="app/components/schedule/schedule.module.js"></script>

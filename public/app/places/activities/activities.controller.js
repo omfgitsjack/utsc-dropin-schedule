@@ -8,7 +8,7 @@
      * Dependency Injection
      * @type {string[]}
      */
-    ActivityCtrl.$inject = ['$scope', 'activities'];
+    ActivityCtrl.$inject = ['activities'];
 
     /**
      * Activity Controller
@@ -16,14 +16,32 @@
      * @param activities - activities
      * @constructor
      */
-    function ActivityCtrl($scope, activities) {
+    function ActivityCtrl(activities) {
 
-        function init()
+        var vm = this;
+
+        activate();
+
+        //////////////////////
+
+        function activate()
         {
-            $scope.activities = activities;
+            vm.activities = activities;
         }
 
-        init();
+    }
+
+    /**
+     * Activity Controller dependencies
+     * @type {{}}
+     */
+    ActivityCtrl.resolve = {
+        activities: activities
+    }
+
+    activities.$inject = ['scheduleService'];
+    function activities(scheduleService) {
+        return scheduleService.getDropins();
     }
 
 })();

@@ -3,20 +3,20 @@
 
     angular
         .module('app.places.activitysessions')
-        .controller('activitysessionCtrl', activitysessionCtrl);
+        .controller('ActivitySessionCtrl', ActivitySessionCtrl);
 
     /**
      * Dependency Injection
      * @type {string[]}
      */
-    activitysessionCtrl.$inject = ['$scope','activitySessions'];
+    ActivitySessionCtrl.$inject = ['$scope','activitySessions'];
 
     /**
      * Activity Session Controller
      * @param $scope
      * @constructor
      */
-    function activitysessionCtrl($scope)
+    function ActivitySessionCtrl($scope)
     {
 
         function init()

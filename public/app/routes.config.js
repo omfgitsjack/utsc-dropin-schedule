@@ -28,11 +28,15 @@
                 url: "/activities",
                 templateUrl: "app/places/activities/activities.tmpl.html",
                 controller: "ActivityCtrl",
+                controllerAs: "vm",
                 resolve: {
-                    activities: function (scheduleService) {
-                        return scheduleService.getDropins();
-                    }
+                    activities: activities
                 }
             });
+
+        activities.$inject = ['scheduleService'];
+        function activities(scheduleService) {
+            return scheduleService.getDropins();
+        }
     }
 })();
