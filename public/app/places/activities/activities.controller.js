@@ -8,15 +8,15 @@
      * Dependency Injection
      * @type {string[]}
      */
-    ActivityCtrl.$inject = ['activities'];
+    ActivityCtrl.$inject = ['dataService'];
 
     /**
      * Activity Controller
      * @param $scope - Scope
-     * @param activities - activities
+     * @param dataService - data service
      * @constructor
      */
-    function ActivityCtrl(activities) {
+    function ActivityCtrl(dataService) {
 
         var vm = this;
 
@@ -26,7 +26,7 @@
 
         function activate()
         {
-            vm.activities = activities;
+            vm.activities = dataService.dropinActivities;
         }
 
     }

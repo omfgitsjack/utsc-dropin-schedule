@@ -33,6 +33,8 @@
 		<!-- Activities -->
 		<script src="app/places/activities/activities.module.js"></script>
 		<script src="app/places/activities/activities.controller.js"></script>
+		<script src="app/places/activities/activities.data.factory.js"></script>
+
 		<!-- Activity Sessions -->
 		<script src="app/places/activitysessions/activitysessions.module.js"></script>
 		<script src="app/places/activitysessions/activitysessions.controller.js"></script>

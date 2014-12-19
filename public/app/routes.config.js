@@ -30,13 +30,13 @@
                 controller: "ActivityCtrl",
                 controllerAs: "vm",
                 resolve: {
-                    activities: activities
+                    dataService: activitiesDataService
                 }
             });
 
-        activities.$inject = ['scheduleService'];
-        function activities(scheduleService) {
-            return scheduleService.getDropins();
+        activitiesDataService.$inject = ['activitiesDataService'];
+        function activitiesDataService(activitiesDataService) {
+            return activitiesDataService.load();
         }
     }
 })();
