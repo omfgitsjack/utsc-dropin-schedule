@@ -37,26 +37,29 @@
 	<script src="app/core/core.config.js"></script>
 	<script src="app/core/core.constant.js"></script>
 
-	<!-- Schedule -->
-		<script src="app/components/schedule/schedule.module.js"></script>
-		<script src="app/components/schedule/schedule.factory.js"></script>
-
+	<!-- Components -->
+		<!-- Schedule -->
+			<!-- Data -->
+			<script src="app/components/schedule/data/schedule.module.js"></script>
+			<script src="app/components/schedule/data/schedule.factory.js"></script>
+			<!-- Widgets -->
+				<!-- Activities -->
+				<script src="app/components/schedule/widgets/activities/activities.module.js"></script>
+				<script src="app/components/schedule/widgets/activities/activities.controller.js"></script>
+				<script src="app/components/schedule/widgets/activities/activities.data.factory.js"></script>
+				<!-- Activity Sessions -->
+				<script src="app/components/schedule/widgets/activity-sessions/activitysessions.module.js"></script>
+				<script src="app/components/schedule/widgets/activity-sessions/activitysessions.controller.js"></script>
+			<!-- Routes -->
+			<script src="app/components/schedule/routes/schedule-routes.module.js"></script>
+			<script src="app/components/schedule/routes/schedule-root-route.constant.js"></script>
+			<script src="app/components/schedule/routes/schedule-routes.config.js"></script>
 	<!-- Layout -->
 		<script src="app/layout/shell.controller.js"></script>
 
-	<!-- Places -->
-		<!-- Activities -->
-		<script src="app/places/activities/activities.module.js"></script>
-		<script src="app/places/activities/activities.controller.js"></script>
-		<script src="app/places/activities/activities.data.factory.js"></script>
-
-		<!-- Activity Sessions -->
-		<script src="app/places/activitysessions/activitysessions.module.js"></script>
-		<script src="app/places/activitysessions/activitysessions.controller.js"></script>
-
 	<!-- App routes -->
-	<script src="app/routes.module.js"></script>
-	<script src="app/routes.config.js"></script>
+	<script src="app/routes/app-routes.module.js"></script>
+	<script src="app/routes/app-routes.config.js"></script>
 
 	<!-- App -->
 	<script src="app/app.module.js"></script>

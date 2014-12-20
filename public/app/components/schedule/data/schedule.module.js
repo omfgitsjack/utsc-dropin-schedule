@@ -4,7 +4,7 @@
 (function(){
     "use strict";
 
-    angular.module('app.components.schedule', [
+    angular.module('app.data.schedule', [
         'app.core'
     ]);
 

@@ -12,10 +12,12 @@
              */
             'utilities.api',
             'utilities.exception',
-            'utilities.logger'
+            'utilities.logger',
+
             /*
              * 3rd Party modules
              */
+            'ui.router'
         ]);
 
 })();

@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    angular.module('app.places.activities')
+    angular.module('app.activities.widgets')
         .controller('ActivityCtrl', ActivityCtrl);
 
     /**

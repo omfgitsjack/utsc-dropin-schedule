@@ -6,8 +6,8 @@
      * activities Controller
      */
     angular
-        .module('app.places.activities')
-        .factory('activitiesDataService', activitiesDataFactory);
+        .module('app.activities.widgets')
+            .factory('activitiesDataService', activitiesDataFactory);
 
     /**
      * Dependency Injection
