@@ -27,6 +27,15 @@
 		<!-- logger -->
 		<script src="app/utilities/logger/logger.module.js"></script>
 		<script src="app/utilities/logger/logger.factory.js"></script>
+		<!-- exception -->
+		<script src="app/utilities/exception/exception.module.js"></script>
+		<script src="app/utilities/exception/exception.factory.js"></script>
+		<script src="app/utilities/exception/exception-handler.provider.js"></script>
+
+	<!-- Core -->
+	<script src="app/core/core.module.js"></script>
+	<script src="app/core/core.config.js"></script>
+	<script src="app/core/core.constant.js"></script>
 
 	<!-- Schedule -->
 		<script src="app/components/schedule/schedule.module.js"></script>
@@ -48,7 +57,6 @@
 	<!-- App routes -->
 	<script src="app/routes.module.js"></script>
 	<script src="app/routes.config.js"></script>
-
 
 	<!-- App -->
 	<script src="app/app.module.js"></script>

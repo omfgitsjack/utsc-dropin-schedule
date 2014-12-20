@@ -9,15 +9,16 @@
      * Dependency Injections
      * @type {string[]}
      */
-    scheduleFactory.$inject = ['apiService', 'API_ROUTES_CONFIG', 'loggerService'];
+    scheduleFactory.$inject = ['apiService', 'API_ROUTES_CONFIG', 'exceptionService'];
 
     /**
      * Provides activities and their activity sessions
-     * @param apiService - API Provider
-     * @param API_ROUTES_CONFIG - API Route Constants
+     * @param apiService
+     * @param API_ROUTES_CONFIG
+     * @param exceptionService
      * @returns {{getDropins: getDropins, getActivitySessions: getActivitySessions}}
      */
-    function scheduleFactory(apiService, API_ROUTES_CONFIG, loggerService)
+    function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService)
     {
         return {
             getDropins: getDropins,
@@ -30,11 +31,14 @@
          * @returns {ng.IPromise<TResult>|*} - Promise of activity sessions
          */
         function getActivitySessions(activityId) {
-            return apiService.get(API_ROUTES_CONFIG.DROPINS + '/' + activityId).then(
-                function (activitySessions) {
-                    return activitySessions;
-                }
-            );
+            return apiService
+                .get(API_ROUTES_CONFIG.DROPINS + '/' + activityId)
+                .then(getActivitySessionsComplete)
+                .catch(exceptionService.catcher('XHR Failed for getActivitySessions'));
+
+            function getActivitySessionsComplete(activitySessions) {
+                return activitySessions;
+            }
         }
 
         /**
@@ -42,12 +46,14 @@
          * @returns {ng.IPromise<TResult>|*} - Promise of activities
          */
         function getDropins() {
-            return apiService.get(API_ROUTES_CONFIG.DROPINS).then(
-                function (activities) {
-                    loggerService.success('Got the activities');
-                    return activities;
-                }
-            );
+            return apiService
+                .get(API_ROUTES_CONFIG.DROPINS)
+                .then(getDropinsComplete)
+                .catch(exceptionService.catcher('XHR Failed for getDropins'));
+
+            function getDropinsComplete(activities) {
+                return activities;
+            }
         }
     }
 
