@@ -5,7 +5,8 @@
     "use strict";
 
     angular.module('app.components.schedule', [
-        'utilities.api'
+        'utilities.api',
+        'utilities.logger'
     ]);
 
 })();

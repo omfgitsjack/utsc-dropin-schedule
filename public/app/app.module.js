@@ -8,4 +8,7 @@
         'app.routes'
     ]);
 
+    angular.module('app.main')
+        .constant('toastr', toastr);
+
 })();

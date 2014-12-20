@@ -5,15 +5,18 @@
 	<title>UTSC Drop-in Schedule</title>
 
 	<!-- CSS -->
+	<link href="bower_components/toastr/toastr.css" rel="stylesheet" />
 
 </head>
 <body ng-app="app.main">
 
 	<div ui-view></div>
 
-	<!-- Bower Components -->
+	<!-- Vendor -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+	<script src="bower_components/toastr/toastr.js"></script>
 
 	<!-- Utilities -->
 		<!-- api -->
@@ -21,6 +24,9 @@
 		<script src="app/utilities/api/api.routes.constant.js"></script>
 		<script src="app/utilities/api/api.constant.js"></script>
 		<script src="app/utilities/api/api.factory.js"></script>
+		<!-- logger -->
+		<script src="app/utilities/logger/logger.module.js"></script>
+		<script src="app/utilities/logger/logger.factory.js"></script>
 
 	<!-- Schedule -->
 		<script src="app/components/schedule/schedule.module.js"></script>

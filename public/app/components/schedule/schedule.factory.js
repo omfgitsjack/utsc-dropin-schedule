@@ -9,7 +9,7 @@
      * Dependency Injections
      * @type {string[]}
      */
-    scheduleFactory.$inject = ['apiService', 'API_ROUTES_CONFIG'];
+    scheduleFactory.$inject = ['apiService', 'API_ROUTES_CONFIG', 'loggerService'];
 
     /**
      * Provides activities and their activity sessions
@@ -17,7 +17,7 @@
      * @param API_ROUTES_CONFIG - API Route Constants
      * @returns {{getDropins: getDropins, getActivitySessions: getActivitySessions}}
      */
-    function scheduleFactory(apiService, API_ROUTES_CONFIG)
+    function scheduleFactory(apiService, API_ROUTES_CONFIG, loggerService)
     {
         return {
             getDropins: getDropins,
@@ -44,6 +44,7 @@
         function getDropins() {
             return apiService.get(API_ROUTES_CONFIG.DROPINS).then(
                 function (activities) {
+                    loggerService.success('Got the activities');
                     return activities;
                 }
             );
