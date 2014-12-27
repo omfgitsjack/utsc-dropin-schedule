@@ -17,12 +17,6 @@
             /*
              * 3rd Party modules
              */
-        ])
-        .run(coreInit);
-
-    coreInit.$inject = ['routerService']
-    function coreInit(routerService) {
-
-    }
+        ]);
 
 })();
