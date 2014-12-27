@@ -31,6 +31,9 @@
 		<script src="app/utilities/exception/exception.module.js"></script>
 		<script src="app/utilities/exception/exception.factory.js"></script>
 		<script src="app/utilities/exception/exception-handler.provider.js"></script>
+		<!-- router -->
+		<script src="app/utilities/router/router.module.js"></script>
+		<script src="app/utilities/router/router.factory.js"></script>
 
 	<!-- Core -->
 	<script src="app/core/core.module.js"></script>

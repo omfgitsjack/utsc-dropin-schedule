@@ -26,7 +26,9 @@
         var parent = SCHEDULE_ROOT_ROUTE.name;
 
         $stateProvider
-            .state('activities', {
+            // Local routes
+            .state({
+                name: 'activities',
                 parent: parent,
                 url: '/',
                 templateUrl: "app/components/schedule/widgets/activities/activities.tmpl.html",

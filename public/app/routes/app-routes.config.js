@@ -28,12 +28,15 @@
      */
     function routeConfig($stateProvider, $urlRouterProvider, SCHEDULE_ROOT_ROUTE)
     {
-        $urlRouterProvider.otherwise("/schedule/activities");
+
+        // Define Root Parents
+        SCHEDULE_ROOT_ROUTE['parent'] = '';
 
         $stateProvider
             // Local Routes
             // Feature Routes
             .state(SCHEDULE_ROOT_ROUTE);
+
 
     }
 })();

@@ -13,11 +13,16 @@
             'utilities.api',
             'utilities.exception',
             'utilities.logger',
-
+            'utilities.router'
             /*
              * 3rd Party modules
              */
-            'ui.router'
-        ]);
+        ])
+        .run(coreInit);
+
+    coreInit.$inject = ['routerService']
+    function coreInit(routerService) {
+
+    }
 
 })();
