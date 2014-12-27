@@ -9,16 +9,11 @@
         .config(scheduleRouteConfig);
 
     /**
-     * Dependency Injection
-     * @type {string[]}
-     */
-    scheduleRouteConfig.$inject = ['$stateProvider', 'SCHEDULE_ROOT_ROUTE'];
-
-    /**
      * Route configuration,
      * uses SCHEDULE_ROOT_ROUTE as abstract parent state
      * @param $stateProvider
      * @param SCHEDULE_ROOT_ROUTE
+     * @ngInject
      */
     function scheduleRouteConfig($stateProvider, SCHEDULE_ROOT_ROUTE)
     {

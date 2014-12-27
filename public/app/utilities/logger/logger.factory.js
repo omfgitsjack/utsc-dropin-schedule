@@ -9,15 +9,10 @@
         .factory('loggerService', loggerFactory);
 
     /**
-     * Dependency Injection
-     * @type {string[]}
-     */
-    loggerFactory.$inject = ['$log', 'toastr'];
-
-    /**
      * Deals with revealing & logging.
      * @returns {
      * {showToasts: boolean, error: error, info: info, success: success, warning: warning, log: ($log.log|*)}}
+     * @ngInject
      */
     function loggerFactory($log, toastr) {
         var service = {

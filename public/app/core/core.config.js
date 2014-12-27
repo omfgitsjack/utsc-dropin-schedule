@@ -8,24 +8,23 @@
         .module('app.core')
         .config(toastrConfig)
         .config(logProviderConfig)
-        .config(exceptionHandlerProviderConfig);
-
-    toastrConfig.$inject = ['toastr'];
+        .config(exceptionHandlerProviderConfig)
+        .run(initCoreComponents);
 
     /**
      * Toastr Configuration
      * @param toastr
+     * @ngInject
      */
     function toastrConfig(toastr) {
         toastr.options.timeOut = 4000;
         toastr.options.positionClass = 'toast-bottom-right';
     }
 
-    logProviderConfig.$inject = ['$logProvider'];
-
     /**
      * Log Provider Configuration
      * @param $logProvider
+     * @ngInject
      */
     function logProviderConfig($logProvider) {
         if ($logProvider.debugEnabled) {
@@ -33,14 +32,23 @@
         }
     }
 
-    exceptionHandlerProviderConfig.$inject = ['exceptionHandlerProvider'];
-
     /**
      * Exception Handler Provider configuration
      * @param exceptionHandlerProvider
+     * @ngInject
      */
     function exceptionHandlerProviderConfig(exceptionHandlerProvider) {
         exceptionHandlerProvider.configure('[NG-JP Error] ');
     }
+
+    /**
+     * Initialzie core components
+     * @param routerService
+     * @ngInject
+     */
+    function initCoreComponents(routerService) {
+
+    }
+
 
 })();

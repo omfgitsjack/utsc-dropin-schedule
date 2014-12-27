@@ -6,17 +6,12 @@
         .factory('scheduleService', scheduleFactory);
 
     /**
-     * Dependency Injections
-     * @type {string[]}
-     */
-    scheduleFactory.$inject = ['apiService', 'API_ROUTES_CONFIG', 'exceptionService'];
-
-    /**
      * Provides activities and their activity sessions
      * @param apiService
      * @param API_ROUTES_CONFIG
      * @param exceptionService
      * @returns {{getDropins: getDropins, getActivitySessions: getActivitySessions}}
+     * @ngInject
      */
     function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService)
     {

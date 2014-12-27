@@ -5,9 +5,7 @@
         .module('utilities.router')
         .factory('routerService', routerService);
 
-
-    routerService.$inject = ['$state', '$rootScope', 'loggerService'];
-
+    /* @ngInject */
     function routerService($state, $rootScope, loggerService) {
         var handlingRouteChangeError = false;
         var routeCounts = {

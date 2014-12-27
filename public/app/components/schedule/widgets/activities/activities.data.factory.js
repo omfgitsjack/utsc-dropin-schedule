@@ -10,16 +10,11 @@
             .factory('activitiesDataService', activitiesDataFactory);
 
     /**
-     * Dependency Injection
-     * @type {Array}
-     */
-    activitiesDataFactory.$inject = ['$q', 'scheduleService'];
-
-    /**
      * Retrieves data for activities Controller
      * @param $q
      * @param scheduleService
      * @returns {{load: load}}
+     * @ngInject
      */
     function activitiesDataFactory($q, scheduleService) {
 

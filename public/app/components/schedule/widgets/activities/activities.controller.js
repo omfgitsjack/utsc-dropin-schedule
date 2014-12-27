@@ -5,16 +5,11 @@
         .controller('ActivityCtrl', ActivityCtrl);
 
     /**
-     * Dependency Injection
-     * @type {string[]}
-     */
-    ActivityCtrl.$inject = ['dataService'];
-
-    /**
      * Activity Controller
      * @param $scope - Scope
      * @param dataService - data service
      * @constructor
+     * @ngInject
      */
     function ActivityCtrl(dataService) {
 
@@ -33,13 +28,12 @@
 
     /**
      * Activity Controller dependencies
-     * @type {{}}
      */
     ActivityCtrl.resolve = {
         activities: activities
-    }
+    };
 
-    activities.$inject = ['scheduleService'];
+    /* @ngInject */
     function activities(scheduleService) {
         return scheduleService.getDropins();
     }

@@ -5,7 +5,7 @@
         .module('utilities.exception')
         .factory('exceptionService', exceptionFactory);
 
-    exceptionFactory.$inject = ['loggerService'];
+    /* @ngInject */
     function exceptionFactory(loggerService) {
         var service = {
             catcher: catcher

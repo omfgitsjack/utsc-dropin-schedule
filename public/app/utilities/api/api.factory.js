@@ -6,16 +6,11 @@
         .factory('apiService', apiFactory);
 
     /**
-     * Dependency Injections
-     * @type {string[]}
-     */
-    apiFactory.$inject = ['$http', 'API_CONFIG'];
-
-    /**
      * Wrapper around $http that acts as the data provider
      * @param $http - http client
      * @param API_CONFIG - API constants
      * @returns {{get: get, post: post}} - get and post services
+     * @ngInject
      */
     function apiFactory($http, API_CONFIG)
     {
