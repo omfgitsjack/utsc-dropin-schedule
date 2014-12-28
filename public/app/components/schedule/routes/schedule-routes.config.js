@@ -5,7 +5,7 @@
      * Schedule route configuration
      */
     angular
-        .module('app.schedule.routes')
+        .module('jp.schedule.routes')
         .config(scheduleRouteConfig);
 
     /**
@@ -26,8 +26,8 @@
                 name: 'activities',
                 parent: parent,
                 url: '/',
-                templateUrl: "app/components/schedule/widgets/activities/activities.tmpl.html",
-                controller: "ActivityCtrl",
+                templateUrl: "app/components/schedule/layout/schedule-base-layout.html",
+                controller: "ScheduleBaseCtrl",
                 controllerAs: "vm",
                 resolve: {
                     dataService: activitiesDataService

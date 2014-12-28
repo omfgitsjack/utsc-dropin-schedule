@@ -6,7 +6,7 @@
      * activities Controller
      */
     angular
-        .module('app.activities.widgets')
+        .module('jp.schedule.widgets')
             .factory('activitiesDataService', activitiesDataFactory);
 
     /**

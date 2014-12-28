@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('app.data.schedule')
+        .module('jp.schedule.data')
         .factory('scheduleService', scheduleFactory);
 
     /**

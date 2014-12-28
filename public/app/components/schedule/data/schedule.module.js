@@ -4,7 +4,7 @@
 (function(){
     "use strict";
 
-    angular.module('app.data.schedule', [
+    angular.module('jp.schedule.data', [
         'app.core'
     ]);
 

@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    angular.module('app.activities.widgets', [
-        'app.data.schedule'
+    angular.module('jp.schedule.widgets', [
+        'jp.schedule.data'
     ]);
 
 })();

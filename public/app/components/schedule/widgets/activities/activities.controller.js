@@ -1,7 +1,8 @@
 (function(){
     "use strict";
 
-    angular.module('app.activities.widgets')
+    angular
+        .module('jp.schedule.widgets')
         .controller('ActivityCtrl', ActivityCtrl);
 
     /**

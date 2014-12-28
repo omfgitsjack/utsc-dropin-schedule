@@ -6,6 +6,8 @@
 
 	<!-- CSS -->
 	<link href="bower_components/toastr/toastr.css" rel="stylesheet" />
+	<link href="css/Skeleton-2.0.2/css/normalize.css" rel="stylesheet" >
+	<link href="css/Skeleton-2.0.2/css/skeleton.css" rel="stylesheet" />
 
 </head>
 <body ng-app="app.main">

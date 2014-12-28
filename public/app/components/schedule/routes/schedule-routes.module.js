@@ -4,9 +4,10 @@
     /**
      * Schedule Routing module
      */
-    angular.module('app.schedule.routes', [
+    angular.module('jp.schedule.routes', [
         'ui.router',
-        'app.activities.widgets'
+        'jp.schedule.widgets',
+        'jp.schedule.layouts'
     ]);
 
 })();

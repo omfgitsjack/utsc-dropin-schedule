@@ -5,7 +5,7 @@
      * Application routes
      */
     angular.module('app.routes', [
-        'app.schedule.routes',
+        'jp.schedule.routes',
         'utilities.router'
     ]);
 

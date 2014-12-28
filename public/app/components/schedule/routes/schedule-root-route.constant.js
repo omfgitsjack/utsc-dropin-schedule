@@ -4,7 +4,7 @@
     /**
      * Schedule's abstract root route
      */
-    angular.module("app.schedule.routes")
+    angular.module("jp.schedule.routes")
         .constant('SCHEDULE_ROOT_ROUTE',
         {
             abstract: true,

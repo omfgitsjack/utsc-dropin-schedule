@@ -16,6 +16,7 @@
             baseFolderRoutes+'/*.constant.js',
             baseFolderRoutes+'/*.controller.js',
             baseFolderRoutes+'/*.factory.js',
+            baseFolderRoutes+'/*.directive.js',
             baseFolderRoutes+'/*.provider.js'
         ];
 
@@ -23,9 +24,9 @@
         gulp.src(folders)
             .pipe(sourcemaps.init())
             .pipe(concat('app.js'))
-            .pipe(ngAnnotate())
-            .pipe(uglify())
-            .pipe(sourcemaps.write())
+                .pipe(ngAnnotate())
+                .pipe(uglify())
+                .pipe(sourcemaps.write())
             .pipe(gulp.dest('./public/app/'))
     });
 
