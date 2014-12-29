@@ -12,7 +12,7 @@
      * @constructor
      * @ngInject
      */
-    function ActivityCtrl(dataService) {
+    function ActivityCtrl() {
 
         var vm = this;
 
@@ -22,7 +22,7 @@
 
         function activate()
         {
-            vm.activities = dataService.dropinActivities;
+            vm.activities = [{activities:'hihi'}];//dataService.dropinActivities;
         }
 
     }

@@ -30,14 +30,14 @@
                 controller: "ScheduleBaseCtrl",
                 controllerAs: "vm",
                 resolve: {
-                    dataService: activitiesDataService
+                    dataService: scheduleBaseLayoutDataService
                 }
             });
 
         // Route Resolves
-        activitiesDataService.$inject = ['activitiesDataService'];
-        function activitiesDataService(activitiesDataService) {
-            return activitiesDataService.load();
+        /* @ngInject */
+        function scheduleBaseLayoutDataService(scheduleBaseLayoutDataService) {
+            return scheduleBaseLayoutDataService.load();
         }
     }
 })();

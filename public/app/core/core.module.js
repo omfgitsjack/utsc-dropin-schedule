@@ -6,7 +6,7 @@
             /*
              * Angular modules
              */
-
+            'ngMaterial',
             /*
              * Our reusable cross app code modules
              */

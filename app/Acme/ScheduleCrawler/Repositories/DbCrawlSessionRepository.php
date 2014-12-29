@@ -5,8 +5,7 @@ use Acme\Schedule\Interfaces\ICrawlSessionRepository;
 use CrawlSession;
 
 
-class DbCrawlSessionRepository implements ICrawlSessionRepository
-{
+class DbCrawlSessionRepository implements ICrawlSessionRepository {
 
 	// Dependencies
 	protected $model;
@@ -27,6 +26,7 @@ class DbCrawlSessionRepository implements ICrawlSessionRepository
 
 	public function getLatest()
 	{
+		return $this->model->where('id', 1)->first();
 		return $this->model->orderBy('id', 'desc')->first();
 	}
 

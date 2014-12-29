@@ -9,11 +9,12 @@
     function ScheduleBaseController(dataService)
     {
         var vm = this;
+        this.dataService = dataService;
 
         activate();
 
         function activate() {
-
+            vm.activities = dataService.dropinActivities;
         }
     }
 

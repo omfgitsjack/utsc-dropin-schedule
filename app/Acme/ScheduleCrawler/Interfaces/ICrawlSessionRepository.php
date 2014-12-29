@@ -1,10 +1,13 @@
 <?php namespace Acme\Schedule\Interfaces;
 
+interface ICrawlSessionRepository {
+    public function store($crawlSession);
 
+    public function getLatest();
 
-Interface ICrawlSessionRepository {
+    public function updateStartTime($crawlSession, $time);
 
-	// Stores one activity session
-	public function store($crawlSession);
+    public function updateEndTime($crawlSession, $time);
 
+    public function updateDuration($crawlSession, $time);
 }

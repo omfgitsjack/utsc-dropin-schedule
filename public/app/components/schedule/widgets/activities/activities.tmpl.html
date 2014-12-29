@@ -1,7 +1,27 @@
-<p>activities activated</p>
+    <md-content>
+        <section>
+            <md-subheader class="md-primary">UTSC Drop-in Activities</md-subheader>
+            <md-list layout="column">
+                <md-item ng-repeat="activity in activities">
+                    <md-divider ng-if="$first"></md-divider>
+                    <md-button
+                            class="jp-schedule-activity-wizard"
+                            ui-sref="schedule.bla">
+                        {{activity.activity}}
+                    </md-button>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-item>
+            </md-list>
+        </section>
+    </md-content>
 <!--
-<ul>
-    <a ng-repeat="activity in vm.activities" ui-sref="schedule.bla">
+
+<section class="jp-schedule-activity-wizard"
+         layout="row"
+         layout-align="center center"
+         layout-padding
+         layout-margin>
+    <md-button flex class="jp-schedule-activity-wizard md-raised" ng-repeat="activity in activities" ui-sref="schedule.bla">
         {{activity.activity}}
-    </a>
-</ul>-->
+    </md-button>
+</section>-->
