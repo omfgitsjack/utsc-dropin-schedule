@@ -26,6 +26,10 @@
 	<script src="bower_components/hammerjs/hammer.js"></script>
 	<script src="bower_components/angular-material/angular-material.js"></script>
 	<script src="bower_components/toastr/toastr.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+	<script src="bower_components/moment-timezone/moment-timezone.js"></script>
+	<script src="bower_components/angular-moment/angular-moment.js"></script>
+	<script src="bower_components/lodash/dist/lodash.js"></script>
 
 	<!-- App -->
 	<script src="app/app.js"></script>

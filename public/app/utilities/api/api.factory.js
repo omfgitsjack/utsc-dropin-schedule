@@ -12,7 +12,7 @@
      * @returns {{get: get, post: post}} - get and post services
      * @ngInject
      */
-    function apiFactory($http, API_CONFIG)
+    function apiFactory($http, API_CONFIG, apiTransformerService)
     {
         return {
             get: get,
@@ -38,10 +38,14 @@
          * @returns {ng.IPromise<TResult>|*} - Promise of results
          */
         function get(route) {
-            return $http.get(API_CONFIG.BASE_ROUTE + '/' + route).then(
-                function (payload) {
-                    return payload.data;
-                });
+            return $http
+                .get(API_CONFIG.BASE_ROUTE + '/' + route)
+                .then(getData)
+                .then(apiTransformerService.replaceDateTime);
+        }
+
+        function getData(payload) {
+            return payload.data
         }
     }
 

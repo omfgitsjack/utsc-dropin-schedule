@@ -13,7 +13,8 @@
             'utilities.api',
             'utilities.exception',
             'utilities.logger',
-            'utilities.router'
+            'utilities.router',
+            'utilities.datetime'
             /*
              * 3rd Party modules
              */

@@ -3,6 +3,7 @@
 
     angular
         .module('app.core')
-        .constant('toastr', toastr);
+        // Lodash Definition
+        .constant('_', _);
 
 })();
