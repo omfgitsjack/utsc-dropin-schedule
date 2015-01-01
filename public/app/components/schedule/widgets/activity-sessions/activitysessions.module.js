@@ -1,6 +1,6 @@
 (function () {
     "use strict";
 
-    angular.module('app.places.activitysessions', []);
+    angular.module('jp.schedule.widgets.activitySessions', []);
 
 })();

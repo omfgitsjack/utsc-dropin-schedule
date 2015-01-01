@@ -67,4 +67,15 @@ class DbActivityRepository implements IActivityRepository
 		return $this->model->where('category', 'Drop In')->get();
 	}
 
+	/**
+	 * Retrieves an activity by it's id
+	 *
+	 * @param $id
+	 * @return activity
+	 */
+	public function getById($id)
+	{
+		return $this->model->where('id', $id)->first();
+	}
+
 }

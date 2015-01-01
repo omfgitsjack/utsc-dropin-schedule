@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('jp.schedule.widgets')
+        .module('jp.schedule.widgets.activities')
         .directive('jpScheduleActivityWizard', jpScheduleActivityWizard);
 
     function jpScheduleActivityWizard()
@@ -12,9 +12,6 @@
             templateUrl: "app/components/schedule/widgets/activities/activities.tmpl.html",
             scope: {
                 activities: "="
-            },
-            link: function($scope, $element, $attr) {
-                console.log($scope);
             }
         };
 

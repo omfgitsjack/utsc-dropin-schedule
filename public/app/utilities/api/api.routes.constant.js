@@ -7,7 +7,8 @@
     angular.module("utilities.api")
         .constant('API_ROUTES_CONFIG',
         {
-            DROPINS: 'dropins'
+            DROPINS: 'dropins',
+            ACTIVITIES: 'activities'
         });
 
 })();

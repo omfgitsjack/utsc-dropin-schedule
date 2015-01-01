@@ -16,4 +16,7 @@ Interface IActivityRepository {
 	// Retrieve activities with 'Dropin' category
 	public function getDropins();
 
+	// Retrieve an activity by id
+	public function getById($id);
+
 }

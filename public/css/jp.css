@@ -16,4 +16,7 @@ section.jp-schedule-activity-wizard {
 jp-schedule-activity-wizard,
 [ui-view] {
     height: 100%;
+
+.text-muted {
+    color: #999;
 }

@@ -16,6 +16,7 @@
     function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService, DateTimeService) {
         return {
             getDropins: getDropins,
+            getActivity: getActivity,
             getActivitySessions: getActivitySessions
         };
 
@@ -30,6 +31,7 @@
                 .get(API_ROUTES_CONFIG.DROPINS + '/' + activityId)
                 .then(getActivitySessionsComplete)
                 .then(groupByDayOfWeek)
+                .then(convertIsWomenBoolean)
                 .catch(exceptionService.catcher('XHR Failed for getActivitySessions'));
 
             /**
@@ -99,6 +101,41 @@
 
                 return activitySessions;
             }
+
+            /**
+             * Converts women_only boolean value from 0,1 to false, true
+             *
+             * @param activitySessions
+             * @returns {*}
+             */
+            function convertIsWomenBoolean(activitySessions)
+            {
+                _.forEach(activitySessions, function(el) {
+                   el.women_only = el.women_only !== 0;
+                });
+
+                return activitySessions;
+            }
+        }
+
+        /**
+         * Retrieves Activity object given an activity Id
+         * @param activityId
+         * @returns
+         * {
+         *       "id":8,
+         *       "activity":"Badminton",
+         *      "category":"Drop In",
+         *      "women_only":0,
+         *      "created_at":"2014-12-14 16:51:25",
+         *      "updated_at":"2014-12-14 16:51:25"
+         * }
+         */
+        function getActivity(activityId)
+        {
+            return apiService
+                .get(API_ROUTES_CONFIG.ACTIVITIES  + '/' + activityId)
+                .catch(exceptionService.catcher('XHR Failed for getActivitySessions'));
         }
 
         /**

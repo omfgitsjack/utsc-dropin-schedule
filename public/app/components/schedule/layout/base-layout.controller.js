@@ -6,15 +6,14 @@
         .controller('ScheduleBaseCtrl', ScheduleBaseController);
 
     /* @ngInject */
-    function ScheduleBaseController(dataService)
+    function ScheduleBaseController(activitiesDataService)
     {
         var vm = this;
-        this.dataService = dataService;
 
         activate();
 
         function activate() {
-            vm.activities = dataService.dropinActivities;
+            vm.activities = activitiesDataService.dropinActivities;
         }
     }
 

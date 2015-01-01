@@ -66,7 +66,7 @@
 
                     // Log State routing error
                     var msg = '[State Routing Error] ' +
-                        'Error routing to ' + toState + ' from ' + fromState + '.' +
+                        'Error routing to ' + toState.name + ' from ' + fromState.name + '.' +
                         ' Error: ' + error;
                     loggerService.warning(msg, [error]);
                     goDefaultState();

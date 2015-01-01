@@ -1,0 +1,8 @@
+<h5>{{vm.activityCategory}}</h5>
+<h4>{{vm.activityLabel}}</h4>
+<h4 class="text-muted" ng-show="vm.activityIsWomenOnly">(Women Only)</h4>
+<md-divider></md-divider>
+
+<jp-schedule-activity-sessions-list
+        schedule="vm.activitySessions">
+</jp-schedule-activity-sessions-list>

@@ -23,4 +23,15 @@ class ActivitiesController extends \BaseController {
 		return $this->activity->getDropins();
 	}
 
+	/**
+	 * Get an activity by its id
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getById($id)
+	{
+		return $this->activity->getById($id);
+	}
+
 }

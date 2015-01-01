@@ -6,7 +6,10 @@
                     <md-divider ng-if="$first"></md-divider>
                     <md-button
                             class="jp-schedule-activity-wizard"
-                            ui-sref="schedule.bla">
+                            ui-sref="schedule.activities.sessions({
+                                activityLabel: activity.activity,
+                                activityId:    activity.id
+                            })">
                         {{activity.activity}}
                     </md-button>
                     <md-divider ng-if="!$last"></md-divider>

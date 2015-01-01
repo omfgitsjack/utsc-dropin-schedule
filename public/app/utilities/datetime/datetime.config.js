@@ -17,6 +17,14 @@
             // customizations.
             week: {
                 dow: 1
+            },
+            calendar: {
+                lastDay: '[Yesterday], dddd MMM D',
+                sameDay : '[Today], dddd MMM D',
+                nextDay : '[Tomorrow], dddd MMM D',
+                lastWeek : 'dddd, MMM D',
+                nextWeek : 'dddd, MMM D',
+                sameElse : 'dddd, MMM D'
             }
         });
 
