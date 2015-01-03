@@ -19,7 +19,6 @@
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/normalize.css">
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/skeleton.css">
-	<link rel="stylesheet" href="css/jp.css">
 	<link rel="stylesheet" href="build/main.css">
 
 

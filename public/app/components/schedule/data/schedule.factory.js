@@ -101,21 +101,6 @@
 
                 return activitySessions;
             }
-
-            /**
-             * Converts women_only boolean value from 0,1 to false, true
-             *
-             * @param activitySessions
-             * @returns {*}
-             */
-            function convertIsWomenBoolean(activitySessions)
-            {
-                _.forEach(activitySessions, function(el) {
-                   el.women_only = el.women_only !== 0;
-                });
-
-                return activitySessions;
-            }
         }
 
         /**
@@ -146,11 +131,29 @@
             return apiService
                 .get(API_ROUTES_CONFIG.DROPINS)
                 .then(getDropinsComplete)
+                .then(convertIsWomenBoolean)
                 .catch(exceptionService.catcher('XHR Failed for getDropins'));
 
             function getDropinsComplete(activities) {
                 return activities;
             }
+        }
+
+        // HELPER FUNCTIONS
+
+        /**
+         * Converts women_only boolean value from 0,1 to false, true
+         *
+         * @param collection
+         * @returns {*}
+         */
+        function convertIsWomenBoolean(collection)
+        {
+            _.forEach(collection, function(el) {
+                el.women_only = el.women_only !== 0;
+            });
+
+            return collection;
         }
     }
 

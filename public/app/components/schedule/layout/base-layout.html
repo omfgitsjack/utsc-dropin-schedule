@@ -1,8 +1,14 @@
-<jp-schedule-activity-wizard
-        layout="column"
-        flex
-        layout-fill
-        activities='vm.activities'></jp-schedule-activity-wizard>
+<div class="activity-wizard-layout jp-title header">
+        <span class="title">UTSC Drop-In Schedule</span>
+    <span class="subtitle text-muted">
+        <span>Easily find drop-in times on any device</span>
+    </span>
+</div>
 
-<!-- View port for activity sessions -->
-<div ui-view></div>
+<md-card class="base-layout">
+        <jp-schedule-activity-wizard
+                layout="column"
+                flex
+                layout-fill
+                activities='vm.activities'></jp-schedule-activity-wizard>
+</md-card>

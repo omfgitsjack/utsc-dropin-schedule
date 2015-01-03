@@ -12,6 +12,9 @@
             templateUrl: "app/components/schedule/widgets/activities/activities.tmpl.html",
             scope: {
                 activities: "="
+            },
+            link: function($scope) {
+                console.log('hi');
             }
         };
 
