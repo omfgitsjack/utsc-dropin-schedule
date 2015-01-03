@@ -31,7 +31,7 @@
                     activitiesDataService: getActivityData
                 }
             })
-            .state(parent+'.activities.sessions', {
+            .state(parent+'.sessions', {
                 url: '/sessions/{activityId}',
                 templateUrl: "app/components/schedule/layout/activity-sessions-layout.html",
                 controller: "ActivitySessionLayoutController",

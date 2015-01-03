@@ -11,3 +11,4 @@ _ide_helper.php
 .idea
 utsc-sched
 node_modules
+/public/build

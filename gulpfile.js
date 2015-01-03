@@ -6,8 +6,12 @@
     var sourcemaps = require('gulp-sourcemaps');
     var uglify = require('gulp-uglify');
     var ngAnnotate = require('gulp-ng-annotate');
+    var less = require('gulp-less');
+    var gutil = require('gulp-util');
+    var autoprefixer = require('gulp-autoprefixer');
 
     var baseFolderRoutes = 'public/app/**';
+    var lessRoutes = 'public/css/jp-styling/main.less';
 
     var folders =
         [
@@ -24,13 +28,31 @@
         gulp.src(folders)
             .pipe(sourcemaps.init())
             .pipe(concat('app.js'))
-                .pipe(ngAnnotate())
-                //.pipe(uglify())
-                .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./public/app/'))
+            .pipe(ngAnnotate())
+            //.pipe(uglify())
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('./public/build/'))
     });
 
-    gulp.task('watch', ['js'], function () {
-        gulp.watch('public/app/**/*.js', ['js'])
+    gulp.task('less', function() {
+        gulp.src(lessRoutes)
+            .pipe(sourcemaps.init())
+            .pipe(less()).on('error', gutil.log)
+            .pipe(autoprefixer("last 2 versions", "> 1%", "ie 8"))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('./public/build/'))
+    });
+
+
+    // WATCHERS
+    gulp.task('watch', ['watch-js', 'watch-less'], function() {
+    });
+
+    gulp.task('watch-js', ['js'], function () {
+        gulp.watch('public/app/**/*.js', ['js']);
+    });
+
+    gulp.task('watch-less', ['less'], function () {
+        gulp.watch('public/css/**/*.less', ['less']);
     });
 })();

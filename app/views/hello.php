@@ -8,8 +8,11 @@
 	<title>UTSC Drop-in Schedule</title>
 
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Fira+Sans:400,300' rel='stylesheet' type='text/css'>
 
+	<!-- Icons -->
+	<link href='http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css' rel='stylesheet' type='text/css'>
 
 	<!-- CSS -->
 	<link href="bower_components/toastr/toastr.css" rel="stylesheet" />
@@ -17,6 +20,8 @@
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/normalize.css">
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/skeleton.css">
 	<link rel="stylesheet" href="css/jp.css">
+	<link rel="stylesheet" href="build/main.css">
+
 
 </head>
 <body ng-app="app.main">
@@ -38,7 +43,7 @@
 	<script src="bower_components/lodash/dist/lodash.js"></script>
 
 	<!-- App -->
-	<script src="app/app.js"></script>
+	<script src="build/app.js"></script>
 
 </body>
 </html>

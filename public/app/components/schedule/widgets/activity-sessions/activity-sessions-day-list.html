@@ -1,10 +1,18 @@
-<div>
-    <h4>{{day | amCalendar }}</h4>
-</div>
 <md-list layout="column">
     <md-item ng-repeat="session in sessions">
-        <md-divider ng-if="$first"></md-divider>
-        <p>{{session.start_time | amDateFormat:'h:mm A'}} - {{session.end_time | amDateFormat:'h:mm A'}}</p>
-        <md-divider ng-if="!$last"></md-divider>
+        <div>
+            <label ng-class="{hidden: !$first}">{{day | amDateFormat:'ddd' | uppercase}}</label>
+            <span class="numbers">
+                <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
+                <div class="time-metric">-</div>
+                <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
+            </span>
+            <span class="location pull-right" aria-label="Location">
+                <i class="ion-location icon"></i>
+                <md-tooltip>
+                    Location
+                </md-tooltip>
+            </span>
+        </div>
     </md-item>
 </md-list>

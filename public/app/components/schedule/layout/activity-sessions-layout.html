@@ -1,8 +1,18 @@
-<h5>{{vm.activityCategory}}</h5>
-<h4>{{vm.activityLabel}}</h4>
-<h4 class="text-muted" ng-show="vm.activityIsWomenOnly">(Women Only)</h4>
-<md-divider></md-divider>
+<div class="activity-session-layout jp-title header">
+    <span class="title">{{vm.activityLabel}}</span>
+    <span class="subtitle text-muted">
+        <span>{{vm.activityCategory}}</span>
+        <span ng-show="vm.activityIsWomenOnly">| Women Only</span>
+    </span>
+</div>
 
-<jp-schedule-activity-sessions-list
-        schedule="vm.activitySessions">
-</jp-schedule-activity-sessions-list>
+<div class="activity-session-layout header">
+    <span class="title">Schedule</span>
+    <span class="subtitle text-muted">This Week</span>
+</div>
+
+<md-card>
+    <jp-schedule-activity-sessions-list
+            schedule="vm.activitySessions">
+    </jp-schedule-activity-sessions-list>
+</md-card>
