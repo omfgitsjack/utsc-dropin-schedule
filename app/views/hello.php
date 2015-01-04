@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="assets/brand/favicon.ico">
+
 	<title>UTSC Drop-in Schedule</title>
 
 	<!-- Fonts -->
@@ -19,6 +21,7 @@
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/normalize.css">
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/skeleton.css">
+	<link rel="stylesheet" href="css/Bootstrap-tooltip/bootstrap-tooltip.css">
 	<link rel="stylesheet" href="build/main.css">
 
 
@@ -26,6 +29,10 @@
 <body ng-app="app.main">
 
 	<div ui-view></div>
+
+	<footer>
+		<p class="text-muted">Follow us on:</p>
+	</footer>
 
 	<!-- Vendor -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>
@@ -40,6 +47,7 @@
 	<script src="bower_components/moment-timezone/moment-timezone.js"></script>
 	<script src="bower_components/angular-moment/angular-moment.js"></script>
 	<script src="bower_components/lodash/dist/lodash.js"></script>
+	<script src="assets/angular-tooltip/ui-bootstrap-custom-tpls-0.12.0.js"></script>
 
 	<!-- App -->
 	<script src="build/app.js"></script>

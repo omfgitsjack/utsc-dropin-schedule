@@ -14,10 +14,11 @@
             'utilities.exception',
             'utilities.logger',
             'utilities.router',
-            'utilities.datetime'
+            'utilities.datetime',
             /*
              * 3rd Party modules
              */
+            'ui.bootstrap'
         ]);
 
 })();

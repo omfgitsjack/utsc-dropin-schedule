@@ -7,11 +7,10 @@
                 <div class="time-metric">-</div>
                 <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
             </span>
-            <span class="location pull-right" aria-label="Location">
+            <span class="location pull-right"
+                  tooltip-placement="left"
+                  tooltip="{{session.location}}">
                 <i class="ion-location icon"></i>
-                <md-tooltip>
-                    Location
-                </md-tooltip>
             </span>
         </div>
     </md-item>

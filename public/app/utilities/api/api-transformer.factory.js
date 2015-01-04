@@ -25,20 +25,15 @@
         function replaceDateTime(obj) {
             if (typeof obj === "string" || obj instanceof String)
             {
-                var dateObj = new Date(obj)
-                if ( Object.prototype.toString.call(dateObj === "[object Date]" )) {
-                    // it is a date
-                    if ( isNaN( dateObj.getTime() ) ) {  // d.valueOf() could also work
-                        // date is not valid
-                        return obj;
-                    }
-                    else {
-                        // date is valid
-                        return DateTimeService.parseUTC(obj);
-                    }
+                // SQL Time matching pattern
+                var pattern = /[0-9]{4}-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1} [0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}/;
+
+                if (pattern.test(obj)) {  // d.valueOf() could also work
+                    // date is valid
+                    return DateTimeService.parseUTC(obj);
                 }
                 else {
-                    // not a date
+                    // date is not valid
                     return obj;
                 }
             }

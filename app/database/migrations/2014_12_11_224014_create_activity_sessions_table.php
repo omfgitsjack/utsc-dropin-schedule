@@ -20,6 +20,7 @@ class CreateActivitysessionsTable extends Migration {
 			$table->timestamp('date');
 			$table->timestamp('start_time');
 			$table->timestamp('end_time');
+			$table->string('location');
 			$table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
 			$table->foreign('crawl_session_id')->references('id')->on('crawl_sessions')->onDelete('cascade');
 			$table->timestamps();

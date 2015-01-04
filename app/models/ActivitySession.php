@@ -2,7 +2,7 @@
 
 class ActivitySession extends \Eloquent {
 
-	protected $fillable = ['date', 'start_time', 'end_time', 'activity_id', 'crawl_session_id'];
+	protected $fillable = ['date', 'start_time', 'end_time', 'location', 'activity_id', 'crawl_session_id'];
 
 	public function activity()
 	{

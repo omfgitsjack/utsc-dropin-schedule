@@ -107,6 +107,7 @@ class DomCrawler implements IDomCrawler
 						'date' => $activitySession['start_time'],
 						'start_time' => $activitySession['start_time'],
 						'end_time' => $activitySession['end_time'],
+						'location' => $activitySession['location'],
 						'activity_id' => $activity['id'],
 						'crawl_session_id' => $crawlSession['id']
 					]);

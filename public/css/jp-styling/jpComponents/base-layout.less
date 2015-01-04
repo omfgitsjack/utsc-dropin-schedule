@@ -6,7 +6,7 @@
 // -------------------------
 @jp-sched-act-wizard-layout-header-padding: 8px;
 
-@jp-sched-act-wizard-layout-title-header-top-margin: 10px;
+@jp-sched-act-wizard-layout-title-header-top-margin: 20;
 @jp-sched-act-wizard-layout-title-header-bottom-margin: 50px;
 
 md-card.base-layout {
@@ -21,10 +21,20 @@ md-card.base-layout {
 }
 
 .activity-wizard-layout.jp-title.header {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
   text-align: center;
-  margin-top: @jp-sched-act-wizard-layout-title-header-top-margin;
-  margin-bottom: @jp-sched-act-wizard-layout-title-header-bottom-margin;
+
+  // Brand
+  > img {
+    width: 150px;
+    height: auto;
+  }
+
+  > .subtitle {
+    margin-top: -5px;
+  }
 }

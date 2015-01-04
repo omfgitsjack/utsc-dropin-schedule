@@ -26,7 +26,6 @@ class DbCrawlSessionRepository implements ICrawlSessionRepository {
 
 	public function getLatest()
 	{
-		return $this->model->where('id', 1)->first();
 		return $this->model->orderBy('id', 'desc')->first();
 	}
 
