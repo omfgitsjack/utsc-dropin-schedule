@@ -44,20 +44,8 @@
 		</div>
 	</footer>
 
-	<!-- Vendor -->
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
-	<script src="bower_components/angular-aria/angular-aria.js"></script>
-	<script src="bower_components/angular-animate/angular-animate.js"></script>
-	<script src="bower_components/hammerjs/hammer.js"></script>
-	<script src="bower_components/angular-material/angular-material.js"></script>
-	<script src="bower_components/toastr/toastr.js"></script>
-	<script src="bower_components/moment/moment.js"></script>
-	<script src="bower_components/moment-timezone/moment-timezone.js"></script>
-	<script src="bower_components/angular-moment/angular-moment.js"></script>
-	<script src="bower_components/lodash/dist/lodash.js"></script>
-	<script src="assets/angular-tooltip/ui-bootstrap-custom-tpls-0.12.0.js"></script>
+	<!-- Vendor Js -->
+	<script src="build/vendor.min.js"></script>
 
 	<!-- App -->
 	<script src="build/app.js"></script>

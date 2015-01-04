@@ -15,8 +15,12 @@
      * @param SCHEDULE_ROOT_ROUTE Note that this is parentless.
      * @ngInject
      */
-    function routeConfig($stateProvider, SCHEDULE_ROOT_ROUTE)
+    function routeConfig($stateProvider, $urlRouterProvider, SCHEDULE_ROOT_ROUTE)
     {
+        // Default route brings users to activities
+        $urlRouterProvider
+            .otherwise('/schedule/activities');
+
         // Define Root Parents
         SCHEDULE_ROOT_ROUTE['parent'] = '';
 

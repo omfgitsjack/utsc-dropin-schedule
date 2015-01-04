@@ -1,0 +1,16 @@
+{
+  "vendorjs": [
+    "public/bower_components/angular/angular.js",
+    "public/bower_components/ui-router/release/angular-ui-router.js",
+    "public/bower_components/angular-aria/angular-aria.js",
+    "public/bower_components/angular-animate/angular-animate.js",
+    "public/bower_components/hammerjs/hammer.js",
+    "public/bower_components/angular-material/angular-material.js",
+    "public/bower_components/toastr/toastr.js",
+    "public/bower_components/moment/moment.js",
+    "public/bower_components/moment-timezone/moment-timezone.js",
+    "public/bower_components/angular-moment/angular-moment.js",
+    "public/bower_components/lodash/dist/lodash.js",
+    "public/assets/angular-tooltip/ui-bootstrap-custom-tpls-0.12.0.js"
+  ]
+}
