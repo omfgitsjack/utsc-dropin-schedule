@@ -10,6 +10,6 @@
             abstract: true,
             name: 'schedule',
             url: '/schedule',
-            template: "<div ui-view></div>"
+            template: "<div class='schedule' ui-view></div>"
         });
 })();

@@ -28,10 +28,20 @@
 </head>
 <body ng-app="app.main">
 
+	<div ng-show="loadingData" class="loading-spinner">
+		<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+	</div>
+
+
 	<div ui-view></div>
 
 	<footer>
 		<p class="text-muted">Follow us on:</p>
+		<div class="social-media">
+			<a href="https://www.facebook.com/UTSCJustPlay">
+				<img class="icon" src="assets/icons/FB-f-Logo__blue_50.png" alt="Facebook"/>
+			</a>
+		</div>
 	</footer>
 
 	<!-- Vendor -->

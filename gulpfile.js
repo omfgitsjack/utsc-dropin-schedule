@@ -34,6 +34,14 @@
             .pipe(gulp.dest('./public/build/'))
     });
 
+    gulp.task('js-prod', function () {
+        gulp.src(folders)
+            .pipe(concat('app.js'))
+            .pipe(ngAnnotate())
+            .pipe(uglify())
+            .pipe(gulp.dest('./public/build/'))
+    });
+
     gulp.task('less', function() {
         gulp.src(lessRoutes)
             .pipe(sourcemaps.init())
@@ -42,7 +50,6 @@
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('./public/build/'))
     });
-
 
     // WATCHERS
     gulp.task('watch', ['watch-js', 'watch-less'], function() {
