@@ -59,7 +59,7 @@
     });
 
     // WATCHERS
-    gulp.task('watch', ['watch-js', 'watch-less'], function() {
+    gulp.task('watch', [], function() {
         gulp.watch('public/app/**/*.js', ['js']);
         gulp.watch('public/css/**/*.less', ['less']);
     });

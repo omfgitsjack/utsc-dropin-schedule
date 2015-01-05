@@ -44,7 +44,7 @@
 				<img class="icon" src="assets/icons/twitter.png" alt="Facebook"/>
 			</a>
 		</div>
-		<p class="text-muted small-text">Disclaimer: We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with UTSC Department of Atheltics & Recreation, or any of its subsidiaries or its affiliates.</p>
+		<p class="text-muted small-text">Disclaimer: We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with UTSC Department of Athletics & Recreation, or any of its subsidiaries or its affiliates.</p>
 	</footer>
 
 	<!-- Vendor Js -->
