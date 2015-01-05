@@ -15,6 +15,7 @@
             'utilities.logger',
             'utilities.router',
             'utilities.datetime',
+            'utilities.googleanalytics',
             /*
              * 3rd Party modules
              */

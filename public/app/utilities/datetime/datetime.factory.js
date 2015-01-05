@@ -50,7 +50,7 @@
          * @returns {*}
          */
         function parseUTC(utcString) {
-            return moment.tz(utcString, 'Etc/UTC').tz('America/Detroit');
+            return moment.tz(utcString, 'America/Detroit');
         }
 
         /**

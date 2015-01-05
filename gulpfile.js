@@ -30,11 +30,13 @@
 
     gulp.task('js', function () {
         gulp.src(paths.js)
+            .pipe(gulpif(taskConstants.dev, sourcemaps.init()))
             .pipe(concat('app.js'))
             .pipe(bytediff.start())
             .pipe(ngAnnotate())
             .pipe(gulpif(taskConstants.prod, uglify()))
             .pipe(bytediff.stop())
+            .pipe(gulpif(taskConstants.dev, sourcemaps.write()))
             .pipe(gulp.dest(paths.build.folder))
     });
 
@@ -62,6 +64,7 @@
     gulp.task('watch', [], function() {
         gulp.watch('public/app/**/*.js', ['js']);
         gulp.watch('public/css/**/*.less', ['less']);
+        gulp.watch('gulp.config.json', ['vendorjs']);
     });
 
 })();

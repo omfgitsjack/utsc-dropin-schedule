@@ -3,9 +3,14 @@
         <md-button
                 aria-label="Schedule"
                 ui-sref="schedule.sessions({
-                activityLabel: activity.activity,
-                activityId:    activity.id
-            })">
+                    activityLabel: activity.activity,
+                    activityId:    activity.id
+                })"
+                analytics-on="click"
+                analytics-category="Activity Chosen"
+                analytics-event="{{activity.activity}}"
+                analytics-label="{{activity.category}}: {{activity.activity}} (women_only: {{activity.women_only}}"
+                >
             {{activity.activity}} <span class='text-muted' ng-show="activity.women_only">(Women Only)</span>
         </md-button>
     </md-item>
