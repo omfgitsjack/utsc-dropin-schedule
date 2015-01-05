@@ -1,6 +1,7 @@
 (function () {
     "use strict";
 
+    // NPM Dependencies
     var gulp = require('gulp');
     // All paths to files are defined in gulp.config.json
     var paths = require('./gulp.config.json');
@@ -13,90 +14,54 @@
     var autoprefixer = require('gulp-autoprefixer');
     var minifyCss = require('gulp-minify-css');
     var bytediff = require('gulp-bytediff');
+    var minimist = require('minimist');
+    var gulpif = require('gulp-if');
+    var argv = require('yargs').argv;
 
-    var baseFolderRoutes = 'public/app/**';
+    // Command line arguments
+    var taskConstants = {
+        "prod": argv.prod,
+        "dev": argv.dev
+    };
+
     var lessRoutes = 'public/css/jp-styling/main.less';
 
-    var folders =
-        [
-            baseFolderRoutes+'/*.module.js',
-            baseFolderRoutes+'/*.config.js',
-            baseFolderRoutes+'/*.constant.js',
-            baseFolderRoutes+'/*.controller.js',
-            baseFolderRoutes+'/*.factory.js',
-            baseFolderRoutes+'/*.directive.js',
-            baseFolderRoutes+'/*.provider.js'
-        ];
-
-    gulp.task('prod', ['js-prod', 'less-prod', 'vendorjs-prod']);
-
-    gulp.task('js-prod', function () {
-        gulp.src(folders)
-            .pipe(concat('app.js'))
-            .pipe(bytediff.start())
-            .pipe(ngAnnotate())
-            .pipe(uglify())
-            .pipe(bytediff.stop())
-            .pipe(gulp.dest('./public/build/'))
-    });
-
-    gulp.task('less-prod', function() {
-        gulp.src(lessRoutes)
-            .pipe(bytediff.start())
-            .pipe(less()).on('error', gutil.log)
-            .pipe(autoprefixer("last 2 versions", "> 1%", "ie 8"))
-            .pipe(minifyCss())
-            .pipe(bytediff.stop())
-            .pipe(gulp.dest('./public/build/'))
-    });
-
-    gulp.task('vendorjs-prod', function() {
-        gulp.src(paths.vendorjs)
-            .pipe(concat('vendor.min.js'))
-            .pipe(bytediff.start())
-            .pipe(uglify())
-            .pipe(bytediff.stop())
-            .pipe(gulp.dest('./public/build'));
-    });
+    gulp.task('build', ['js', 'less', 'vendorjs']);
 
     gulp.task('js', function () {
-        gulp.src(folders)
-            .pipe(sourcemaps.init())
+        gulp.src(paths.js)
             .pipe(concat('app.js'))
+            .pipe(bytediff.start())
             .pipe(ngAnnotate())
-            //.pipe(uglify())
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./public/build/'))
+            .pipe(gulpif(taskConstants.prod, uglify()))
+            .pipe(bytediff.stop())
+            .pipe(gulp.dest(paths.build.folder))
     });
 
     gulp.task('less', function() {
-        gulp.src(lessRoutes)
-            .pipe(sourcemaps.init())
+        gulp.src(paths.less)
+            .pipe(bytediff.start())
             .pipe(less()).on('error', gutil.log)
             .pipe(autoprefixer("last 2 versions", "> 1%", "ie 8"))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./public/build/'))
+            .pipe(gulpif(taskConstants.prod, minifyCss()))
+            .pipe(bytediff.stop())
+            .pipe(concat(paths.build.files.css))
+            .pipe(gulp.dest(paths.build.folder))
     });
 
     gulp.task('vendorjs', function() {
         gulp.src(paths.vendorjs)
-            .pipe(concat('vendor.min.js'))
+            .pipe(concat(paths.build.files.vendorjs))
             .pipe(bytediff.start())
-            //.pipe(uglify())
+            .pipe(gulpif(taskConstants.prod, uglify()))
             .pipe(bytediff.stop())
-            .pipe(gulp.dest('./public/build'));
+            .pipe(gulp.dest(paths.build.folder));
     });
-
 
     // WATCHERS
     gulp.task('watch', ['watch-js', 'watch-less'], function() {
-    });
-
-    gulp.task('watch-js', ['js'], function () {
         gulp.watch('public/app/**/*.js', ['js']);
-    });
-
-    gulp.task('watch-less', ['less'], function () {
         gulp.watch('public/css/**/*.less', ['less']);
     });
+
 })();

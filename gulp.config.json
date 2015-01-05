@@ -1,4 +1,25 @@
 {
+  "build": {
+    "folder": "public/build/",
+    "files": {
+      "js": "app.js",
+      "css": "app.css",
+      "vendorjs": "vendor.js",
+      "vendorcss": "vendor.css"
+    }
+  },
+  "js": [
+    "public/app/**/*.module.js",
+    "public/app/**/*.config.js",
+    "public/app/**/*.constant.js",
+    "public/app/**/*.controller.js",
+    "public/app/**/*.factory.js",
+    "public/app/**/*.directive.js",
+    "public/app/**/*.provider.js"
+  ],
+  "less": [
+    "public/css/jp-styling/main.less"
+  ],
   "vendorjs": [
     "public/bower_components/angular/angular.js",
     "public/bower_components/ui-router/release/angular-ui-router.js",
@@ -12,5 +33,9 @@
     "public/bower_components/angular-moment/angular-moment.js",
     "public/bower_components/lodash/dist/lodash.js",
     "public/assets/angular-tooltip/ui-bootstrap-custom-tpls-0.12.0.js"
+  ],
+  "vendorcss": [
+
   ]
+
 }

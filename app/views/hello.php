@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/normalize.css">
 	<link rel="stylesheet" href="css/Skeleton-2.0.2/css/skeleton.css">
 	<link rel="stylesheet" href="css/Bootstrap-tooltip/bootstrap-tooltip.css">
-	<link rel="stylesheet" href="build/main.css">
+	<link rel="stylesheet" href="build/app.css">
 
 
 </head>
@@ -32,7 +32,6 @@
 		<md-progress-circular md-mode="indeterminate"></md-progress-circular>
 	</div>
 
-
 	<div ui-view></div>
 
 	<footer>
@@ -41,11 +40,15 @@
 			<a href="https://www.facebook.com/UTSCJustPlay">
 				<img class="icon" src="assets/icons/FB-f-Logo__blue_50.png" alt="Facebook"/>
 			</a>
+			<a href="https://www.twitter.com/justplayca">
+				<img class="icon" src="assets/icons/twitter.png" alt="Facebook"/>
+			</a>
 		</div>
+		<p class="text-muted small-text">Disclaimer: We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with UTSC Department of Atheltics & Recreation, or any of its subsidiaries or its affiliates.</p>
 	</footer>
 
 	<!-- Vendor Js -->
-	<script src="build/vendor.min.js"></script>
+	<script src="build/vendor.js"></script>
 
 	<!-- App -->
 	<script src="build/app.js"></script>
