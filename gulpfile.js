@@ -17,6 +17,7 @@
     var minimist = require('minimist');
     var gulpif = require('gulp-if');
     var argv = require('yargs').argv;
+    var karma = require('gulp-karma');
 
     // Command line arguments
     var taskConstants = {
@@ -26,6 +27,7 @@
 
     var lessRoutes = 'public/css/jp-styling/main.less';
 
+    // Building js, less, vendorjs etc...
     gulp.task('build', ['js', 'less', 'vendorjs']);
 
     gulp.task('js', function () {
@@ -61,10 +63,24 @@
     });
 
     // WATCHERS
-    gulp.task('watch', [], function() {
+    gulp.task('watch', ['karma-test'], function() {
         gulp.watch('public/app/**/*.js', ['js']);
         gulp.watch('public/css/**/*.less', ['less']);
         gulp.watch('gulp.config.json', ['vendorjs']);
+    });
+
+    // Karma Testing
+    gulp.task('karma-test', function() {
+       return gulp
+           .src('./dummy')
+           .pipe(karma({
+               configFile: 'karma.conf.js',
+               action: 'run'
+           }))
+           .on('error', function(err) {
+               gutil.log(err);
+               this.emit('end'); //instead of erroring the stream, end it
+           });
     });
 
 })();

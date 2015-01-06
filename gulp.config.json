@@ -8,6 +8,9 @@
       "vendorcss": "vendor.css"
     }
   },
+  "spec": [
+    "public/app/**/*.spec.js"
+  ],
   "js": [
     "public/app/**/*.module.js",
     "public/app/**/*.config.js",
@@ -38,6 +41,10 @@
   ],
   "vendorcss": [
 
+  ],
+  "testing": [
+    "public/bower_components/angular/angular.js",
+    "public/bower_components/angular-mocks/angular-mocks.js"
   ]
 
 }
