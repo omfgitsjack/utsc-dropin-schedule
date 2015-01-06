@@ -1,16 +1,27 @@
 <md-list layout="column">
     <md-item ng-repeat="session in sessions">
         <div>
-            <label ng-class="{hidden: !$first}">{{day | amDateFormat:'ddd' | uppercase}}</label>
-            <span class="numbers">
+            <label
+                    ng-class="
+                    {hidden: !$first,
+                    scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())
+                    }">
+                {{day | amDateFormat:'ddd' | uppercase}}
+            </label>
+            <span class="numbers"
+                  ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}">
                 <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
                 <div class="time-metric">-</div>
                 <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
             </span>
-            <span class="location pull-right"
-                  tooltip-placement="left"
-                  tooltip="{{session.location}}">
-                <i class="ion-location icon"></i>
+            <span class="location pull-right text-muted"
+                  ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}">
+                <span class="location-text ">{{session.location}}</span>
+                <span class="location-icon"
+                      tooltip-placement="left"
+                      tooltip="{{session.location}}">
+                    <i class="ion-location icon"></i>
+                </span>
             </span>
         </div>
     </md-item>

@@ -3,7 +3,7 @@
 
     angular.module('jp.schedule.widgets',
         [
-            'jp.schedule.widgets.activities',
+            'jp.schedule.widgets.activityPicker',
             'jp.schedule.widgets.activitySessions'
         ]);
 

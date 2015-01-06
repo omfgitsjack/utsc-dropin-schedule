@@ -1,0 +1,34 @@
+//
+// jp-schedule-activity-picker Styling
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+@activity-picker-width: 100%;
+@activity-picker-height: 100%;
+
+@activity-picker-list-padding: 0;
+
+@activity-picker-button-width: 100%;
+@activity-picker-button-height: auto;
+@activity-picker-button-padding: 20px;
+
+
+jp-schedule-activity-picker {
+  width: @activity-picker-width;
+  height: @activity-picker-height;
+
+  > md-list {
+    padding: @activity-picker-list-padding;
+
+    > md-item {
+      // Schedule button
+      > .md-button {
+        text-align: left;
+        width: @activity-picker-button-width;
+        padding: @activity-picker-button-padding;
+        height: @activity-picker-button-height;
+      }
+    }
+  }
+}

@@ -12,11 +12,16 @@
      * UI-Router state configuration.
      * Feature root (abstract) routes are also included.
      * @param $stateProvider
+     * @param $urlRouterProvider
+     * @param $locationProvider
      * @param SCHEDULE_ROOT_ROUTE Note that this is parentless.
      * @ngInject
      */
-    function routeConfig($stateProvider, $urlRouterProvider, SCHEDULE_ROOT_ROUTE)
+    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, SCHEDULE_ROOT_ROUTE)
     {
+        // Use hashbang mode for seo purposes
+        $locationProvider.hashPrefix('!');
+
         // Default route brings users to activities
         $urlRouterProvider
             .otherwise('/schedule/activities');

@@ -1,0 +1,46 @@
+//
+// activities--layout Styling
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+@activities-layout-header-padding: 8px;
+
+@activities-layout-title-header-padding: 10px;
+@activities-layout-title-header-margin-top: 20px;
+@activities-layout-title-header-margin-bottom: 40px;
+
+@activities-brand-width: 150px;
+@activities-brand-height: auto;
+
+@subtitle-margin-top: -5px;
+
+md-card.base-layout {
+  padding: 0;
+}
+
+// Layout
+// -------------------------
+.activity-wizard-layout.header {
+  padding-left: @activities-layout-header-padding;
+  padding-right: @activities-layout-header-padding;
+}
+
+.activity-wizard-layout.jp-title.header {
+  padding-left: @activities-layout-title-header-padding;
+  padding-right: @activities-layout-title-header-padding;
+  margin: 0 auto;
+  margin-top: @activities-layout-title-header-margin-top;
+  margin-bottom: @activities-layout-title-header-margin-bottom;
+  text-align: center;
+
+  // Brand
+  > img {
+    width: @activities-brand-width;
+    height: auto;
+  }
+
+  > .subtitle {
+    margin-top: @subtitle-margin-top;
+  }
+}
