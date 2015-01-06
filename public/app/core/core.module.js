@@ -7,6 +7,7 @@
              * Angular modules
              */
             'ngMaterial',
+            'ngTouch',
             /*
              * Our reusable cross app code modules
              */
