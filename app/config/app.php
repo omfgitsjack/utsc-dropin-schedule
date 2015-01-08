@@ -122,7 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Acme\ScheduleCrawlerServiceProvider'
+		'Acme\ScheduleCrawlerServiceProvider',
+		'Indatus\Dispatcher\ServiceProvider',
 	),
 
 	/*
