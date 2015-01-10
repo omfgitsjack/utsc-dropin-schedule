@@ -14,7 +14,8 @@
 		"codeception/verify": "*",
 		"way/generators": "~2.0",
 		"nesbot/Carbon": "*",
-		"indatus/dispatcher": "1.4.1"
+		"indatus/dispatcher": "1.4.1",
+	    "nutsweb/laravel-prerender": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

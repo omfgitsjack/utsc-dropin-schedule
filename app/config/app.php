@@ -124,6 +124,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Acme\ScheduleCrawlerServiceProvider',
 		'Indatus\Dispatcher\ServiceProvider',
+		'Nutsweb\LaravelPrerender\LaravelPrerenderServiceProvider'
 	),
 
 	/*
