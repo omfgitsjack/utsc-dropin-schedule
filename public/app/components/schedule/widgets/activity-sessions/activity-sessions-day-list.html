@@ -17,10 +17,10 @@
             <span class="location pull-right text-muted"
                   ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}">
                 <span class="location-text ">{{session.location}}</span>
-                <span class="location-icon"
-                      tooltip-placement="left"
-                      tooltip="{{session.location}}">
-                    <i class="ion-location icon"></i>
+                <span class="location-icon">
+                    <i class="ion-location icon"
+                       tooltip-placement="left"
+                       tooltip="{{session.location}}"></i>
                 </span>
             </span>
         </div>

@@ -43,6 +43,7 @@
   ],
   "vendorcss": [
     "public/bower_components/angular-material/angular-material.css",
+    "public/bower_components/toastr/toastr.css",
     "public/assets/vendor/Skeleton-2.0.2/css/normalize.css",
     "public/assets/vendor/Skeleton-2.0.2/css/skeleton.css",
     "public/assets/vendor/Bootstrap-tooltip/bootstrap-tooltip.css"
