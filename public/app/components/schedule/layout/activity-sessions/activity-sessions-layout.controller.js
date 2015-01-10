@@ -8,15 +8,16 @@
     /**
      * Mediates data to underlying layout, activitySessionsData contains:
      * {
-         *      activity: 'string',
-         *      activitySession: [ { date: moment, sessions: [ session, session ] ]
-         * }
-         *
-         * @param activitySessionsData
+     *      activity: 'string',
+     *      activitySession: [ { date: moment, sessions: [ session, session ] ]
+     * }
+     *
+     * @param activitySessionsData
+     * @param toastr
      * @constructor
      * @ngInject
      */
-    function ActivitySessionLayoutController(activitySessionsData)
+    function ActivitySessionLayoutController(activitySessionsData, loggerService)
     {
 
         var vm = this;
@@ -31,6 +32,9 @@
             vm.activityLabel = activitySessionsData.activity.activity;
             vm.activityCategory = activitySessionsData.activity.category;
             vm.activityIsWomenOnly = activitySessionsData.activity.women_only;
+
+            // Show a toast for them to add to homescreen
+            loggerService.info("To add app to your phone, click Settings > Add to Home Screen", "title");
         }
 
     }

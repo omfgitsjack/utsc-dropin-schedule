@@ -122,7 +122,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Acme\ScheduleCrawlerServiceProvider'
+		'Acme\ScheduleCrawlerServiceProvider',
+		'Indatus\Dispatcher\ServiceProvider',
+		'Nutsweb\LaravelPrerender\LaravelPrerenderServiceProvider'
 	),
 
 	/*
@@ -189,9 +191,8 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'Arrays'						=> 'Underscore\Types\Arrays',
-		'Carbon'						=> 'Carbon\Carbon'
-
+		'Arrays'			=> 'Underscore\Types\Arrays',
+		'Carbon'			=> 'Carbon\Carbon'
 	),
 
 );

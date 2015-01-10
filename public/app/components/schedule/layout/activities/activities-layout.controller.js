@@ -3,10 +3,10 @@
 
     angular
         .module('jp.schedule.layouts')
-        .controller('ScheduleBaseCtrl', ScheduleBaseController);
+        .controller('ActivitiesLayoutCtrl', ActivitiesLayoutCtrl);
 
     /* @ngInject */
-    function ScheduleBaseController(activitiesDataService)
+    function ActivitiesLayoutCtrl(activitiesDataService)
     {
         var vm = this;
 

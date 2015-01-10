@@ -24,8 +24,8 @@
             // Local routes
             .state(parent+'.activities', {
                 url: '/activities',
-                templateUrl: "app/components/schedule/layout/base-layout.html",
-                controller: "ScheduleBaseCtrl",
+                templateUrl: "app/components/schedule/layout/activities/activities-layout.html",
+                controller: "ActivitiesLayoutCtrl",
                 controllerAs: "vm",
                 resolve: {
                     activitiesDataService: getActivityData
@@ -33,7 +33,7 @@
             })
             .state(parent+'.sessions', {
                 url: '/sessions/{activityId}',
-                templateUrl: "app/components/schedule/layout/activity-sessions-layout.html",
+                templateUrl: "app/components/schedule/layout/activity-sessions/activity-sessions-layout.html",
                 controller: "ActivitySessionLayoutController",
                 controllerAs: "vm",
                 resolve: {

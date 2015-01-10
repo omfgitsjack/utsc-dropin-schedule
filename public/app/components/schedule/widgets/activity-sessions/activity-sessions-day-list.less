@@ -1,0 +1,74 @@
+//
+// jp-schedule-activity-sessions-day-list Styling
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+@jp-schedule-activity-session-day-list-width: 100%;
+
+@activity-sessions-day-list-label-padding: 1.6rem;
+@activity-sessions-day-list-label-width: 7.2rem;
+
+@activity-sessions-day-list-item-padding: .5rem;
+
+@activity-sessions-day-list-location-icon-size: 1.5rem;
+
+// Day List
+// -------------------------
+jp-schedule-activity-sessions-day-list {
+  display: block;
+  width: @jp-schedule-activity-session-day-list-width;
+
+  > md-list {
+    > md-item {
+      padding-top: @activity-sessions-day-list-item-padding;
+      padding-bottom: @activity-sessions-day-list-item-padding;
+
+      // Label for Day in week i.e. MON, TUE ...
+      > * label {
+        display: inline-block;
+        padding-left: @activity-sessions-day-list-label-padding;
+        padding-right: @activity-sessions-day-list-label-padding;
+        width: @activity-sessions-day-list-label-width; // Fixed width to keep consistency (MON length is different from TUE length)
+      }
+
+      // Styling for: 11:00 AM - 12:00 PM
+      // Note that these are numbers, so they use 300 Fira Sans 1.3em
+      > * .start,
+        * .time-metric,
+        * .end {
+          display: inline-block;
+        }
+
+      // Styling for location icon / text floating right
+      > * .location {
+        padding-right: @activity-sessions-day-list-label-padding;
+
+        > span.location-icon {
+          display: inline-block;
+
+          @media (min-width: @screen-sm-min) {
+            display: none;
+          }
+        }
+
+        > span.location-text {
+          display: none;
+
+          @media (min-width: @screen-sm-min) {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.scheduleUnavailable {
+  color: rgba(0,0,0,0.20);
+}
+
+.scheduleIsToday {
+  color: #F44336;
+}

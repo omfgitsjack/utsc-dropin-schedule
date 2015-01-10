@@ -6,7 +6,8 @@
      */
     angular.module('app.main', [
         'app.routes',
-        'app.core'
+        'app.core',
+        'jp.schedule'
     ]);
 
 })();

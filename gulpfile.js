@@ -28,7 +28,7 @@
     var lessRoutes = 'public/css/jp-styling/main.less';
 
     // Building js, less, vendorjs etc...
-    gulp.task('build', ['js', 'less', 'vendorjs']);
+    gulp.task('build', ['js', 'less', 'vendorjs', 'vendorcss']);
 
     gulp.task('js', function () {
         gulp.src(paths.js)
@@ -62,11 +62,23 @@
             .pipe(gulp.dest(paths.build.folder));
     });
 
+    gulp.task('vendorcss', function() {
+        gulp.src(paths.vendorcss)
+            .pipe(concat(paths.build.files.vendorcss))
+            .pipe(bytediff.start())
+            .pipe(gulpif(taskConstants.prod, minifyCss()))
+            .pipe(bytediff.stop())
+            .pipe(gulp.dest(paths.build.folder));
+    });
+
     // WATCHERS
-    gulp.task('watch', ['karma-test'], function() {
+    gulp.task('watch', ['watch-app', 'karma-test']);
+
+    // Watch for changes in app, less, vendor dependencies & compile new dependency as necessary.
+    gulp.task('watch-app', function() {
         gulp.watch('public/app/**/*.js', ['js']);
-        gulp.watch('public/css/**/*.less', ['less']);
-        gulp.watch('gulp.config.json', ['vendorjs']);
+        gulp.watch('public/**/*.less', ['less']);
+        gulp.watch('gulp.config.json', ['vendorjs', 'vendorcss']);
     });
 
     // Karma Testing
@@ -75,7 +87,7 @@
            .src('./dummy')
            .pipe(karma({
                configFile: 'karma.conf.js',
-               action: 'run'
+               action: 'start'
            }))
            .on('error', function(err) {
                gutil.log(err);
