@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="Description" content="Easily browse UTSC's Drop-in Schedule and find people to play with">
 	<meta name="fragment" content="!"> <!-- Prerender -->
+	<meta name="google-site-verification" content="MKhdNJ-k6x9DLM2KXbWrHPj8Cuf_BWDU7qzwctRe3-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="assets/brand/favicon.ico">
