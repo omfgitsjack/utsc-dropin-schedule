@@ -13,7 +13,7 @@
      * }
      *
      * @param activitySessionsData
-     * @param toastr
+     * @param loggerService
      * @constructor
      * @ngInject
      */
@@ -34,7 +34,8 @@
             vm.activityIsWomenOnly = activitySessionsData.activity.women_only;
 
             // Show a toast for them to add to homescreen
-            loggerService.info("To add app to your phone, click Settings > Add to Home Screen", "title");
+            loggerService.info("Save app onto your phone: " +
+            "Click Settings > Add to Home Screen", "title");
         }
 
     }
