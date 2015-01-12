@@ -41,8 +41,8 @@ class ScheduleRetriever implements IScheduleRetriever
 		$activitySessions = $latestCrawlSession
 			->activitySessions()
 			->where('activity_id', $activityId)
-/*			->where('date', '>=', Carbon::now()->startOfWeek())
-			->where('date', '<=', Carbon::now()->endOfWeek())*/
+			->where('date', '>=', Carbon::now()->startOfWeek())
+			->where('date', '<=', Carbon::now()->endOfWeek())
 			->get();
 		return $activitySessions;
 	}
