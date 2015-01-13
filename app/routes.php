@@ -18,5 +18,6 @@ Route::get('/', function()
 
 Route::get('api/crawl', 'ScheduleCrawlerController@crawlUTSCSchedule');
 Route::get('api/dropins', 'ActivitiesController@getDropins');
-Route::get('api/dropins/{id}', 'ActivitySessionsController@getActivitySessionsForThisWeek');
+Route::get('api/dropins/{activity_id}', 'ActivitySessionsController@getActivitySessionsForThisWeek');
+Route::post('api/dropins/{activity_id}/sessions/{session_id}/participants', 'ParticipantsController@storeOne');
 Route::get('api/activities/{id}', 'ActivitiesController@getById');

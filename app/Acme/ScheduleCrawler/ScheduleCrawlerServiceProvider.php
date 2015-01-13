@@ -25,6 +25,11 @@ class ScheduleCrawlerServiceProvider extends ServiceProvider {
             'Acme\Schedule\Repositories\DbCrawlSessionRepository'
         );
 
+        $this->app->bind(
+            'Acme\Schedule\Interfaces\IParticipantRepository',
+            'Acme\Schedule\Repositories\DbParticipantRepository'
+        );
+
         // Strategies
         $this->app->bind(
             'Acme\Schedule\Interfaces\IDomCrawler', 

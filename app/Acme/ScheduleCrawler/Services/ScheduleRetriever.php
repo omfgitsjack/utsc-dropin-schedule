@@ -44,6 +44,13 @@ class ScheduleRetriever implements IScheduleRetriever
 			->where('date', '>=', Carbon::now()->startOfWeek())
 			->where('date', '<=', Carbon::now()->endOfWeek())
 			->get();
+
+		// Add Participants
+		foreach ($activitySessions as $session)
+		{
+			$session['participants'] = $session->participants()->get();
+		}
+
 		return $activitySessions;
 	}
 }
