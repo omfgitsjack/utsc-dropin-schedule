@@ -20,7 +20,7 @@
             /*
              * 3rd Party modules
              */
-            'ui.bootstrap'
+            'ui.bootstrap' // Accordion and collapse
         ]);
 
 })();

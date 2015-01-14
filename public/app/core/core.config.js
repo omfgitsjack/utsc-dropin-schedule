@@ -1,3 +1,4 @@
+
 (function () {
     "use strict";
 
@@ -9,6 +10,8 @@
         .config(toastrConfig)
         .config(logProviderConfig)
         .config(exceptionHandlerProviderConfig)
+        .config(mdThemingProviderConfig)
+        .config(httpProviderConfig)
         .run(initCoreComponents);
 
     /**
@@ -39,6 +42,18 @@
      */
     function exceptionHandlerProviderConfig(exceptionHandlerProvider) {
         exceptionHandlerProvider.configure('[NG-JP Error] ');
+    }
+
+    // @ngInject
+    function mdThemingProviderConfig($mdThemingProvider) {
+        $mdThemingProvider.theme('docs-dark', 'default')
+            .dark();
+    }
+
+    // @ngInject
+    function httpProviderConfig($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 
     /**

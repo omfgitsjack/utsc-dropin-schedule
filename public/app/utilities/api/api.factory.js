@@ -29,7 +29,7 @@
                 input = {};
             }
 
-            $http.post(API_CONFIG.BASE_ROUTE + '/' + route, input);
+            return $http.post(API_CONFIG.BASE_ROUTE + '/' + route, input);
         }
 
         /**

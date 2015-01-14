@@ -17,7 +17,7 @@
      * @constructor
      * @ngInject
      */
-    function ActivitySessionLayoutController(activitySessionsData, loggerService)
+    function ActivitySessionLayoutController(activitySessionsData, loggerService, $stateParams)
     {
 
         var vm = this;
@@ -34,8 +34,8 @@
             vm.activityIsWomenOnly = activitySessionsData.activity.women_only;
 
             // Show a toast for them to add to homescreen
-            loggerService.info("Save app onto your phone: " +
-            "Click Settings > Add to Home Screen", "title");
+/*            loggerService.info("Save app onto your phone: " +
+            "Click Settings > Add to Home Screen", "title");*/
         }
 
     }

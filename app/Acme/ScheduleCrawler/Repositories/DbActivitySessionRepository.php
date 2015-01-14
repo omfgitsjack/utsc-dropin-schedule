@@ -51,7 +51,12 @@ class DbActivitySessionRepository implements IActivitySessionRepository
 	 */
 	public function getSessionsForThisWeek($activityId)
 	{
-		return $this->model->where('activity_id', $activityId)->where('crawl_session_id')->get();
+		$sessions = $this->model
+		->where('activity_id', $activityId)
+		->where('crawl_session_id')
+		->get();
+
+		return "hi";
 	}
 
 }

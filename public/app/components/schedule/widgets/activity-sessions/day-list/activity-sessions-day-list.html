@@ -1,0 +1,9 @@
+<md-list layout="column">
+    <md-item ng-repeat="session in sessions">
+        <jp-activity-session
+                session="session"
+                day="day"
+                first-session="$first"
+                last-session="$last"></jp-activity-session>
+    </md-item>
+</md-list>

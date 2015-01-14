@@ -1,0 +1,96 @@
+//
+// jp-activity-session Styling
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+@activity-session-label-margin: 1.6rem;
+@activity-session-label-width: 3.6rem;
+
+@activity-session-item-padding: .5rem;
+
+@activity-session-location-icon-size: 2rem;
+@activity-session-seeMoreTrigger-icon-size: 2rem;
+
+@activity-session-item-firstSession: 16px;
+@activity-session-item-lastSession: 16px;
+
+// jp-activity-session
+// -------------------------
+jp-activity-session {
+  padding-top: @activity-session-item-padding;
+  padding-bottom: @activity-session-item-padding;
+
+  > .md-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    height: 100%;
+    // Padding top is used to make the button's height bigger & fill up padding from the md-list.
+  }
+
+  // Label for Day in week i.e. MON, TUE ...
+  > button > * label {
+    display: inline-block;
+    margin-left: @activity-session-label-margin;
+    margin-right: @activity-session-label-margin;
+    width: @activity-session-label-width; // Fixed width to keep consistency (MON length is different from TUE length)
+  }
+
+  // Styling for: 11:00 AM - 12:00 PM
+  // Note that these are numbers, so they use 300 Fira Sans 1.3em
+  > * .start,
+  * .time-metric,
+  * .end {
+    display: inline-block;
+  }
+
+  // Styling for display more button floating right
+  > * .seeMoreTrigger {
+    margin-right: @activity-session-label-margin;
+
+    > span {
+      font-size: @activity-session-seeMoreTrigger-icon-size;
+      display: inline-block;
+    }
+
+  }
+/*
+  // Styling for location icon / text floating right
+  > * .location {
+    margin-right: @activity-session-label-margin;
+
+    > span.location-icon {
+      font-size: @activity-session-location-icon-size;
+      display: inline-block;
+
+      @media (min-width: @screen-sm-min) {
+        display: none;
+      }
+    }
+
+    > span.location-text {
+      display: none;
+
+      @media (min-width: @screen-sm-min) {
+        display: inline-block;
+      }
+    }
+  }*/
+}
+
+.details {
+  min-height: 20px;
+  background-color: #f5f5f5;
+  padding: 8px;
+  border: 1px solid #e3e3e3;
+  display: block;
+}
+
+.firstSession {
+  padding-top: @activity-session-item-firstSession;
+}
+
+.lastSession {
+  padding-bottom: @activity-session-item-lastSession;
+}

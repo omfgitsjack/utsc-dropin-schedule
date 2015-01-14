@@ -1,0 +1,13 @@
+<md-content md-theme="docs-dark" layout="row" layout-align="center end" >
+    <md-input-container
+            flex="70">
+        <label class="joinLabel" for="userIn">Name</label>
+        <input id="userIn" type="text" ng-model="user.name"/>
+    </md-input-container>
+    <div flex="5"></div>
+    <md-button
+            class="md-raised md-primary"
+            ng-click="join()"
+            ng-disabled="activitySession.created_at.isBefore(DateTimeService.now().startOf('day'))"
+            flex="25">Join</md-button>
+</md-content>

@@ -54,6 +54,11 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('allowOrigin', function($route, $request, $response)
+{
+	$response->header('Access-Control-Allow-Origin','*');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
