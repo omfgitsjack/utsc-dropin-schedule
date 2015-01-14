@@ -1,0 +1,59 @@
+<md-button class="md-button"
+           md-no-ink
+           ng-class="{firstSession: firstSession, lastSession: lastSession}"
+           ng-click="toggleShowDetails()">
+
+    <!-- Summary/Activity-session header -->
+    <div>
+        <!-- Day of Week (Shown once) -->
+        <label
+                ng-class="
+                    {hidden: !firstSession,
+                    scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())
+                    }">
+            {{day | amDateFormat:'ddd' | uppercase}}
+        </label>
+
+        <!-- Time Range -->
+            <span class="numbers"
+                  ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}"
+                  jp-schedule-unavailable>
+                <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
+                <div class="time-metric">-</div>
+                <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
+            </span>
+
+        <!-- Location -->
+        <!-- <span class="location pull-right text-muted"
+              jp-schedule-unavailable>
+            <span class="location-text">{{session.location}}</span>
+            <span class="location-icon">
+                <i class="ion-chevron-down icon"
+                   tooltip-placement="left"
+                   tooltip="{{session.location}}"></i>
+            </span>
+        </span> -->
+
+        <!-- Drop down icon -->
+        <span
+                class="seeMoreTrigger pull-right text-muted"
+                jp-schedule-unavailable>
+            <span class="location-icon">
+                <i class="ion-chevron-down icon">
+                </i>
+            </span>
+        </span>
+
+        <!-- Participant Count -->
+        <jp-participant-count count="session.participants.length"
+                              day="day"
+                              ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}">
+        </jp-participant-count>
+
+    </div>
+
+    <!-- activity-session details -->
+    <div collapse="!showDetails">
+        Details!
+    </div>
+</md-button>

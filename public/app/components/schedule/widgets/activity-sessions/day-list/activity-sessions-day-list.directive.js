@@ -10,17 +10,10 @@
     {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/schedule/widgets/activity-sessions/activity-sessions-day-list.html',
+            templateUrl: 'app/components/schedule/widgets/activity-sessions/day-list/activity-sessions-day-list.html',
             scope: {
                 sessions: '=',
                 day: '='
-            },
-            link: function($scope, element, attr)
-            {
-                console.log('g');
-                $scope.today = DateTimeService.now().add(0, 'days');
-                $scope.tm = DateTimeService.now().add(-1, 'days');
-                $scope.tmm = DateTimeService.now().add(-3, 'days');
             }
         };
 

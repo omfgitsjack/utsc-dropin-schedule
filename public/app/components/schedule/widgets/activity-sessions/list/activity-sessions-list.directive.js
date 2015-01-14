@@ -8,7 +8,7 @@
     function jpScheduleActivitySessionsList() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/schedule/widgets/activity-sessions/activity-sessions-list.html',
+            templateUrl: 'app/components/schedule/widgets/activity-sessions/list/activity-sessions-list.html',
             scope: {
                 schedule: '='
             },

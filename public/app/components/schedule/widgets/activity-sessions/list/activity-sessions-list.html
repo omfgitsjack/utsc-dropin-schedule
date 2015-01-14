@@ -1,0 +1,9 @@
+<md-card>
+    <div ng-repeat="day in schedule">
+        <jp-schedule-activity-sessions-day-list
+                sessions="day.sessions"
+                day="day.date">
+        </jp-schedule-activity-sessions-day-list>
+        <md-divider ng-if="!$last"></md-divider>
+    </div>
+</md-card>
