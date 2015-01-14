@@ -13,7 +13,7 @@
             scope: false, // We're using session.participants.length from parent
             link: function($scope, $element)
             {
-                if ($scope.day.isBefore(DateTimeService.now()))
+                if ($scope.day.isBefore(DateTimeService.now().startOf('day')))
                 {
                     $element.addClass('scheduleUnavailable');
                 }

@@ -17,7 +17,8 @@
         return {
             getDropins: getDropins,
             getActivity: getActivity,
-            getActivitySessions: getActivitySessions
+            getActivitySessions: getActivitySessions,
+            joinActivitySession: joinActivitySession
         };
 
         /**
@@ -154,6 +155,14 @@
             });
 
             return collection;
+        }
+
+        function joinActivitySession(activityId, sessionId, name)
+        {
+            return apiService
+                .post('dropins/'+activityId+'/sessions/'+sessionId+'/participants', {
+                    name: name
+                });
         }
     }
 

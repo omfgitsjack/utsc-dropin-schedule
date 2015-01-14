@@ -7,53 +7,51 @@
     <div>
         <!-- Day of Week (Shown once) -->
         <label
-                ng-class="
-                    {hidden: !firstSession,
-                    scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())
-                    }">
+                ng-class="{hidden: !firstSession}"
+                jp-schedule-unavailable>
             {{day | amDateFormat:'ddd' | uppercase}}
         </label>
 
         <!-- Time Range -->
-            <span class="numbers"
-                  ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}"
-                  jp-schedule-unavailable>
-                <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
-                <div class="time-metric">-</div>
-                <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
-            </span>
-
-        <!-- Location -->
-        <!-- <span class="location pull-right text-muted"
+        <span class="numbers"
               jp-schedule-unavailable>
-            <span class="location-text">{{session.location}}</span>
-            <span class="location-icon">
-                <i class="ion-chevron-down icon"
-                   tooltip-placement="left"
-                   tooltip="{{session.location}}"></i>
-            </span>
-        </span> -->
+            <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
+            <div class="time-metric">-</div>
+            <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
+        </span>
 
-        <!-- Drop down icon -->
+        <!-- Toggle icon -->
         <span
                 class="seeMoreTrigger pull-right text-muted"
                 jp-schedule-unavailable>
             <span class="location-icon">
-                <i class="ion-chevron-down icon">
+                <i class="ion-chevron-down icon"
+                   ng-show="!showDetails">
+                </i>
+                <i class="ion-chevron-up icon"
+                   ng-show="showDetails">
                 </i>
             </span>
         </span>
 
-        <!-- Participant Count -->
-        <jp-participant-count count="session.participants.length"
-                              day="day"
-                              ng-class="{scheduleUnavailable: session.start_time.isBefore(DateTimeService.now())}">
-        </jp-participant-count>
+        <!-- Header Summary (Displays participant count (Always) and location (If details are shown) -->
+        <jp-header-summary class="jp-header-summary"
+                              count="session.participants.length"
+                              location="session.location"
+                              show-location="showDetails"
+                              day="day">
+        </jp-header-summary>
 
-    </div>
-
-    <!-- activity-session details -->
-    <div collapse="!showDetails">
-        Details!
     </div>
 </md-button>
+
+<!-- activity-session details -->
+<jp-participant-list
+        ng-show="showDetails && session.participants.length > 0"
+        participants="session.participants">
+</jp-participant-list>
+<jp-participant-join
+        activity-session="session"
+        ng-show="showDetails"
+        ng-disable="">
+</jp-participant-join>

@@ -19,7 +19,7 @@
     "toastr": "~2.1.0",
     "angular-ui-router.stateHelper": "~1.2.0",
     "ui-router": "~0.2.13",
-    "angular-material": "~0.6.1",
+    "angular-material": "~0.7.0",
     "angular-moment": "~0.8.3",
     "lodash": "~2.4.*",
     "angulartics": "~0.17.1",

@@ -1,0 +1,23 @@
+//
+// jp-header-summary Styling
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+
+// Margin left is to offset the day of week sizing
+@jp-header-summary-margin-left: @activity-session-label-margin*2 + @activity-session-label-width;
+// Alignment with Date
+@jp-header-summary-padding-left: .5rem;
+// Make it closer to the Date
+@jp-header-summary-margin-top: -1rem;
+
+
+// jp-header-summary
+// -------------------------
+.jp-header-summary {
+  display: block;
+  margin-top: @jp-header-summary-margin-top;
+  margin-left: @jp-header-summary-margin-left;
+  padding-left: @jp-header-summary-padding-left;
+}
