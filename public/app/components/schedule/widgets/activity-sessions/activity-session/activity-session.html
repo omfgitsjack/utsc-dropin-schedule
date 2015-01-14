@@ -12,14 +12,6 @@
             {{day | amDateFormat:'ddd' | uppercase}}
         </label>
 
-        <!-- Time Range -->
-        <span class="numbers"
-              jp-schedule-unavailable>
-            <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
-            <div class="time-metric">-</div>
-            <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
-        </span>
-
         <!-- Toggle icon -->
         <span
                 class="seeMoreTrigger pull-right text-muted"
@@ -32,6 +24,14 @@
                    ng-show="showDetails">
                 </i>
             </span>
+        </span>
+
+        <!-- Time Range -->
+        <span class="numbers"
+              jp-schedule-unavailable>
+            <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
+            <div class="time-metric">-</div>
+            <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
         </span>
 
         <!-- Header Summary (Displays participant count (Always) and location (If details are shown) -->
