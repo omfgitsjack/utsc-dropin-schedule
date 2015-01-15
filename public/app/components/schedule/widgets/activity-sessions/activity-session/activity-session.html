@@ -1,7 +1,12 @@
 <md-button class="md-button"
            md-no-ink
            ng-class="{firstSession: firstSession, lastSession: lastSession}"
-           ng-click="toggleShowDetails()">
+           ng-click="toggleShowDetails()"
+           analytics-on="click"
+           analytics-category="Activity Session Chosen"
+           analytics-event="{{session.start_time.format('ddd HH:mm:ss')}} - {{session.end_time.format('HH:mm:ss')}}"
+           analytics-label="Activity Session Chosen Label"
+        >
 
     <!-- Summary/Activity-session header -->
     <div>

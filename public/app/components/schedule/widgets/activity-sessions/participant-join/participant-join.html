@@ -1,4 +1,4 @@
-<md-content md-theme="docs-dark" layout="row" layout-align="center end" >
+<md-content md-theme="docs-dark" layout="row" layout-align="center end">
     <md-input-container
             flex="70">
         <label class="joinLabel" for="userIn">Name</label>
@@ -8,5 +8,12 @@
     <md-button
             class="md-raised md-primary"
             ng-click="join()"
-            flex="25">Join</md-button>
+            flex="25"
+            analytics-on="click"
+            analytics-category="Activity Session Joined"
+            analytics-event="{{user.name}}"
+            analytics-label="Activity Session Chosen Label"
+            >
+        Join
+    </md-button>
 </md-content>
