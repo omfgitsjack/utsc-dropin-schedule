@@ -4,10 +4,9 @@
     /**
      * API Resources constants
      */
-    angular.module("utilities.api")
+    angular.module("app.routes")
         .constant('API_ROUTES_CONFIG',
         {
-            DROPINS: 'dropins',
             ACTIVITIES: 'activities'
         });
 

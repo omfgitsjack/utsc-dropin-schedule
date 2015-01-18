@@ -28,7 +28,7 @@
 
         function activate()
         {
-            vm.activitySessions = activitySessionsData.activitySessions;
+            vm.activitySessions = activitySessionsData.activitySessionsThisWeek;
             vm.activityLabel = activitySessionsData.activity.activity;
             vm.activityCategory = activitySessionsData.activity.category;
             vm.activityIsWomenOnly = activitySessionsData.activity.women_only;

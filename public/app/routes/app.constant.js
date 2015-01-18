@@ -4,7 +4,7 @@
     /**
      * API (non-route) constants
      */
-    angular.module("utilities.api")
+    angular.module("app.routes")
         .constant('API_CONFIG',
         {
             BASE_ROUTE: 'api'

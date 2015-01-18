@@ -31,7 +31,8 @@
             return $q.all(data).then(
                 function(results) {
                    return {
-                       activitySessions: results[0],
+                       activitySessionsThisWeek: results[0],
+                       activitySessionsNextWeek: results[0],
                        activity: results[1]
                    }
                 });
@@ -41,7 +42,7 @@
 
             // Loads all data into this.data and returns a promise
             function loadActivitySessions(activityId) {
-                return scheduleService.getActivitySessions(activityId);
+                return scheduleService.getActivitySessions(activityId, 0);
             }
 
             function loadActivity(activityId) {
