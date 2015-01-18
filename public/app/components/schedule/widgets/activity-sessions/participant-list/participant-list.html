@@ -1,0 +1,7 @@
+<md-list layout="column" role="list">
+    <md-item ng-repeat="participant in participants">
+        <label class="count numbers">{{$index+1}}</label>
+        <span class="participant-name">{{participant.name}}</span>
+        <span class="text-muted pull-right">{{participant.created_at | amTimeAgo}}</span>
+    </md-item>
+</md-list>

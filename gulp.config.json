@@ -36,7 +36,7 @@
     "public/bower_components/moment-timezone/moment-timezone.js",
     "public/bower_components/angular-moment/angular-moment.js",
     "public/bower_components/lodash/dist/lodash.js",
-    "public/assets/vendor/angular-tooltip/ui-bootstrap-custom-tpls-0.12.0.js",
+    "public/assets/vendor/angular-ui/ui-bootstrap-custom-tpls-0.12.0.js",
     "public/bower_components/angulartics/dist/angulartics.min.js",
     "public/bower_components/angulartics/dist/angulartics-ga.min.js",
     "public/bower_components/angular-touch/angular-touch.js"
@@ -46,7 +46,7 @@
     "public/bower_components/toastr/toastr.css",
     "public/assets/vendor/Skeleton-2.0.2/css/normalize.css",
     "public/assets/vendor/Skeleton-2.0.2/css/skeleton.css",
-    "public/assets/vendor/Bootstrap-tooltip/bootstrap-tooltip.css"
+    "public/assets/vendor/Bootstrap-ui/bootstrap-tooltip.css"
   ],
   "testing": [
     "public/bower_components/angular/angular.js",

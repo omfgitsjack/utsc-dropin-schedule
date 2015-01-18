@@ -17,9 +17,9 @@ class ActivitySessionsController extends \BaseController {
 		$this->scheduleRetriever = $scheduleRetriever;
 	}
 
-	public function getActivitySessionsForThisWeek($id)
+	public function getActivitySessions($activity_id, $weeks)
 	{
-		return $this->scheduleRetriever->getActivitySessionsForThisWeek($id);
+		return $this->scheduleRetriever->getActivitySessions($activity_id, $weeks);
 	}
 
 }

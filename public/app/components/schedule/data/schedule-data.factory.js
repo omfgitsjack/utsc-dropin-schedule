@@ -13,46 +13,28 @@
      * @returns {{getDropins: getDropins, getActivitySessions: getActivitySessions}}
      * @ngInject
      */
-    function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService, DateTimeService) {
+    function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService) {
         return {
             getDropins: getDropins,
             getActivity: getActivity,
-            getActivitySessions: getActivitySessions
+            getActivitySessions: getActivitySessions,
+            joinActivitySession: joinActivitySession
         };
 
         /**
          * Retrieves all activity sessions for a given activity
          *
          * @param activityId - Activity Id
+         * @param weeks - Week to retrieve (0 for this week)
          * @returns {ng.IPromise<TResult>|*} - Promise of activity sessions
          */
-        function getActivitySessions(activityId) {
+        function getActivitySessions(activityId, weeks) {
+
             return apiService
-                .get(API_ROUTES_CONFIG.DROPINS + '/' + activityId)
-                .then(getActivitySessionsComplete)
+                .get(API_ROUTES_CONFIG.ACTIVITIES + '/' + activityId+'/sessions/'+ weeks)
                 .then(groupByDayOfWeek)
                 .then(convertIsWomenBoolean)
                 .catch(exceptionService.catcher('XHR Failed for getActivitySessions'));
-
-            /**
-             * Returns activity sessions for a given activityId
-             * @param activitySessions
-             * @returns [
-             *    {
-             *      "id": 12,
-             *      "activity_id": 8,
-             *      "crawl_session_id": 1,
-             *      "date": moment,
-             *      "start_time": moment,
-             *      "end_time": moment,
-             *      "created_at": moment,
-             *      "updated_at": moment
-             *    }, ...
-             * ]
-             */
-            function getActivitySessionsComplete(activitySessions) {
-                return activitySessions;
-            }
 
             /**
              * Format activity sessions by day of week
@@ -129,7 +111,7 @@
          */
         function getDropins() {
             return apiService
-                .get(API_ROUTES_CONFIG.DROPINS)
+                .get(API_ROUTES_CONFIG.ACTIVITIES)
                 .then(getDropinsComplete)
                 .then(convertIsWomenBoolean)
                 .catch(exceptionService.catcher('XHR Failed for getDropins'));
@@ -154,6 +136,15 @@
             });
 
             return collection;
+        }
+
+        function joinActivitySession(activityId, sessionId, name)
+        {
+            return apiService
+                .post(API_ROUTES_CONFIG.ACTIVITIES
+                +activityId+'/sessions/'+sessionId+'/participants', {
+                    name: name
+                });
         }
     }
 

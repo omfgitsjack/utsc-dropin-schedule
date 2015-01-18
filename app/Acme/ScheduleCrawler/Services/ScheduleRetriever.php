@@ -29,10 +29,12 @@ class ScheduleRetriever implements IScheduleRetriever
 	}
 
 	/**
-	 * Crawls through UTSC Schedule for Activity and Activity Sessions
+	 * Retrieve activity sessions for this week's activity
+	 * @param $activityId
+	 * @param $nextWeek
 	 * @return array activity sessions for this week
 	 */
-	public function getActivitySessionsForThisWeek($activityId)
+	public function getActivitySessions($activityId, $weeks)
 	{
 		// Get Latest CrawlSession
 		$latestCrawlSession = $this->crawlSession->getLatest();
@@ -41,9 +43,16 @@ class ScheduleRetriever implements IScheduleRetriever
 		$activitySessions = $latestCrawlSession
 			->activitySessions()
 			->where('activity_id', $activityId)
-			->where('date', '>=', Carbon::now()->startOfWeek())
-			->where('date', '<=', Carbon::now()->endOfWeek())
+			->where('date', '>=', Carbon::now()->startOfWeek()->addWeeks($weeks))
+			->where('date', '<=', Carbon::now()->endOfWeek()->addWeeks($weeks))
 			->get();
+
+		// Add Participants
+		foreach ($activitySessions as $session)
+		{
+			$session['participants'] = $session->participants()->get();
+		}
+
 		return $activitySessions;
 	}
 }

@@ -14,4 +14,9 @@ class ActivitySession extends \Eloquent {
 		return $this->belongsTo('CrawlSession');
 	}
 
+	public function participants()
+	{
+		return $this->hasMany('Participant');
+	}
+
 }

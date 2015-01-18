@@ -1,0 +1,31 @@
+//
+// jp-participant-list Styling
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+@participant-list-label-width: @activity-session-label-width;
+@participant-list-label-margin: @activity-session-label-margin;
+
+@participant-list-pull-right-margin-right: @activity-session-label-margin;
+
+// jp-participant-list
+// -------------------------
+jp-participant-list {
+  background-color: #f5f5f5;
+  padding: 8px;
+  border: 1px solid #e3e3e3;
+  display: block;
+
+  > * label {
+    display: inline-block;
+    width: @participant-list-label-width;
+    margin-left: @participant-list-label-margin;
+    margin-right: @participant-list-label-margin;
+  }
+
+  > * .pull-right {
+    margin-right: @participant-list-pull-right-margin-right;
+  }
+
+}

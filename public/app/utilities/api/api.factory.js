@@ -9,6 +9,7 @@
      * Wrapper around $http that acts as the data provider
      * @param $http - http client
      * @param API_CONFIG - API constants
+     * @param apiTransformerService - transformer service
      * @returns {{get: get, post: post}} - get and post services
      * @ngInject
      */
@@ -29,7 +30,7 @@
                 input = {};
             }
 
-            $http.post(API_CONFIG.BASE_ROUTE + '/' + route, input);
+            return $http.post(API_CONFIG.BASE_ROUTE + '/' + route, input);
         }
 
         /**

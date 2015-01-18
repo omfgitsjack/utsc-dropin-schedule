@@ -8,14 +8,18 @@
 
 <div class="activity-session-layout header">
     <span class="title">Schedule</span>
-    <span class="subtitle text-muted">This Week</span>
+    <span class="subtitle text-muted">{{vm.weekIdentifier}} Week</span>
+    <md-button class="md-raised md-primary"
+            ng-show="vm.enableWeekSwitch"
+            ui-sref="schedule.sessions({
+                activityId: vm.activityId,
+                weeksFromToday: vm.oppositeWeek
+            })">{{vm.oppositeWeekIdentifier}} Week</md-button>
 </div>
 
-<md-card>
-    <jp-schedule-activity-sessions-list
-            schedule="vm.activitySessions">
-    </jp-schedule-activity-sessions-list>
-</md-card>
+<jp-schedule-activity-sessions-list
+        schedule="vm.activitySessions">
+</jp-schedule-activity-sessions-list>
 
 <div class="floating-back-button">
     <md-button

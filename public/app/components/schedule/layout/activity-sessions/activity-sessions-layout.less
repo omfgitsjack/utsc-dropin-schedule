@@ -16,6 +16,15 @@
 .activity-session-layout.header {
   padding-left: @activity-session-layout-header-padding;
   padding-right: @activity-session-layout-header-padding;
+  position: relative;
+  display: block;
+
+  > button {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    margin-right: @activity-session-layout-header-padding;
+  }
 }
 
 .activity-session-layout.jp-title.header {
