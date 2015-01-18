@@ -9,7 +9,7 @@
      * Utility functions to transform API calls
      * @returns {{prop: prop}}
      */
-    function apiTransformerService(DateTimeService, UTC_TIMEFORMAT)
+    function apiTransformerService(DateTimeService)
     {
         var service = {
             replaceDateTime: replaceDateTime

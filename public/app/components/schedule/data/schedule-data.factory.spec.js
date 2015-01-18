@@ -14,13 +14,19 @@ describe("scheduleService Unit Tests", function () {
         scheduleDataService = scheduleService;
     }));
 
+    describe("scheduleService", function() {
+        it('should be defined', function() {
+            expect(scheduleDataService).toBeDefined();
+        });
+    });
+
     describe("scheduleService.getDropins", function () {
 
         it('should be defined', function () {
             expect(scheduleDataService.getDropins).toBeDefined();
         });
 
-        it('should make XHR call to app/api/dropins');
+        it('should make XHR call to app/api/activities');
 
         it('should convert is_women from 0/1 to true/false');
 

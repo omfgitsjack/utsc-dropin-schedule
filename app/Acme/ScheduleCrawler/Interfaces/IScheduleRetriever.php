@@ -7,6 +7,6 @@
 Interface IScheduleRetriever {
 
 	// Retrieves this week's UTSC Schedule
-	public function getActivitySessionsForThisWeek($activityId);
+	public function getActivitySessions($activityId, $weeks);
 
 }
