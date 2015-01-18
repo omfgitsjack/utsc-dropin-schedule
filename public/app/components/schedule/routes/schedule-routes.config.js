@@ -32,7 +32,7 @@
                 }
             })
             .state(parent+'.sessions', {
-                url: '/sessions/{activityId}',
+                url: '/sessions/{activityId}/{weeksFromToday}',
                 templateUrl: "app/components/schedule/layout/activity-sessions/activity-sessions-layout.html",
                 controller: "ActivitySessionLayoutController",
                 controllerAs: "vm",
@@ -50,7 +50,7 @@
 
         /* @ngInject */
         function getActivitySessionsData(activitySessionsLayoutDataService, $stateParams) {
-            return activitySessionsLayoutDataService.load($stateParams['activityId']);
+            return activitySessionsLayoutDataService.load($stateParams['activityId'], $stateParams['weeksFromToday']);
         }
     }
 })();

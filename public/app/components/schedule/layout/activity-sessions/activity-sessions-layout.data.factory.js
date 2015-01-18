@@ -21,10 +21,11 @@
             load: load
         };
 
-        function load(activityId) {
+        function load(activityId, weeksFromToday) {
 
             var data = [
-                loadActivitySessions(activityId),
+                loadActivitySessionsThisWeek(activityId),
+                loadActivitySessionsNextWeek(activityId),
                 loadActivity(activityId)
             ];
 
@@ -32,8 +33,9 @@
                 function(results) {
                    return {
                        activitySessionsThisWeek: results[0],
-                       activitySessionsNextWeek: results[0],
-                       activity: results[1]
+                       activitySessionsNextWeek: results[1],
+                       activity: results[2],
+                       selectedWeek: weeksFromToday
                    }
                 });
 
@@ -41,8 +43,12 @@
             ///////////////////////////
 
             // Loads all data into this.data and returns a promise
-            function loadActivitySessions(activityId) {
+            function loadActivitySessionsThisWeek(activityId) {
                 return scheduleService.getActivitySessions(activityId, 0);
+            }
+
+            function loadActivitySessionsNextWeek(activityId) {
+                return scheduleService.getActivitySessions(activityId, 1);
             }
 
             function loadActivity(activityId) {

@@ -13,7 +13,7 @@
      * @returns {{getDropins: getDropins, getActivitySessions: getActivitySessions}}
      * @ngInject
      */
-    function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService, DateTimeService) {
+    function scheduleFactory(apiService, API_ROUTES_CONFIG, exceptionService) {
         return {
             getDropins: getDropins,
             getActivity: getActivity,
@@ -25,6 +25,7 @@
          * Retrieves all activity sessions for a given activity
          *
          * @param activityId - Activity Id
+         * @param weeks - Week to retrieve (0 for this week)
          * @returns {ng.IPromise<TResult>|*} - Promise of activity sessions
          */
         function getActivitySessions(activityId, weeks) {

@@ -20,6 +20,6 @@ Route::group(array('after' => 'allowOrigin'), function() {
 	Route::get('api/crawl', 'ScheduleCrawlerController@crawlUTSCSchedule');
 	Route::get('api/activities', 'ActivitiesController@getDropins');
 	Route::get('api/activities/{id}', 'ActivitiesController@getById');
-	Route::get('api/activities/{activity_id}/sessions/{weeks}', 'ActivitySessionsController@getActivitySessionsForThisWeek');
+	Route::get('api/activities/{activity_id}/sessions/{weeks}', 'ActivitySessionsController@getActivitySessions');
 	Route::post('api/activities/{activity_id}/sessions/{session_id}/participants', 'ParticipantsController@storeOne');
 });
