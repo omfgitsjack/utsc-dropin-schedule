@@ -37,13 +37,26 @@ class DbParticipantRepository implements IParticipantRepository
      * @param $name
      * @return Participant Model
      */
-    public function storeOne($activity_session_id, $name)
+    private function storeOne($activity_session_id, $name)
     {
-        //dd($activity_session_id);
         return $this->model->create([
             'activity_session_id' => $activity_session_id,
             'name' => $name
         ]);
+    }
+
+    /**
+     * Stores multiple participants
+     *
+     * @param $activity_session_id
+     * @param $names
+     */
+    public function storeMultiple($activity_session_id, $names)
+    {
+        foreach ($names as $name)
+        {
+            $this->storeOne($activity_session_id, $name);
+        }
     }
 
     public function storePhoneNumber($activity_session_id, $phone_number)
