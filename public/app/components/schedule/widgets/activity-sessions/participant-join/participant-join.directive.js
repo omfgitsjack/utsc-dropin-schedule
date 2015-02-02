@@ -22,7 +22,7 @@
                         .joinActivitySession(
                             $scope.activitySession.activity_id,
                             $scope.activitySession.id,
-                            $scope.user.name)
+                            parseCSV($scope.user.name))
                         .then(function() {
                             toastr.success('You have successfully joined! Have fun :)');
                             $state.go($state.$current, null, { reload: true });
@@ -34,6 +34,11 @@
                 function activate()
                 {
                     $scope.user = {};
+                }
+
+                function parseCSV(names)
+                {
+                    return names.split(",");
                 }
             }
         }

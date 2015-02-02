@@ -138,12 +138,12 @@
             return collection;
         }
 
-        function joinActivitySession(activityId, sessionId, name)
+        function joinActivitySession(activityId, sessionId, names)
         {
             return apiService
                 .post(API_ROUTES_CONFIG.ACTIVITIES
-                +activityId+'/sessions/'+sessionId+'/participants', {
-                    name: name
+                +'/'+activityId+'/sessions/'+sessionId+'/participants', {
+                    names: names
                 });
         }
     }

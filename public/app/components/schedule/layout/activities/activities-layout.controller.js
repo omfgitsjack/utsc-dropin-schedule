@@ -6,7 +6,7 @@
         .controller('ActivitiesLayoutCtrl', ActivitiesLayoutCtrl);
 
     /* @ngInject */
-    function ActivitiesLayoutCtrl(activitiesDataService)
+    function ActivitiesLayoutCtrl(activitiesDataService, toastr)
     {
         var vm = this;
 
@@ -14,6 +14,10 @@
 
         function activate() {
             vm.activities = activitiesDataService.dropinActivities;
+            toastr.options.closeButton = true;
+            toastr.options.timeout = 30;
+            toastr.info("There are no dropins this week due to Pan Am Fencing Championships");
+
         }
     }
 

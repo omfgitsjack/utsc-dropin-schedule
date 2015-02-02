@@ -21,6 +21,15 @@ jp-activity-session {
   padding-top: @activity-session-item-padding;
   padding-bottom: @activity-session-item-padding;
 
+  > button {
+    max-height: 64px; // For dealing with firefox issues
+
+    > div {
+      display: block;
+    }
+
+  }
+
   > .md-button {
     display: block;
     width: 100%;
@@ -48,6 +57,9 @@ jp-activity-session {
   // Styling for display more button floating right
   > * .seeMoreTrigger {
     margin-right: @activity-session-label-margin;
+    position: absolute;
+    top: 25%;
+    right: 0;
 
     > span {
       font-size: @activity-session-seeMoreTrigger-icon-size;
@@ -55,28 +67,7 @@ jp-activity-session {
     }
 
   }
-/*
-  // Styling for location icon / text floating right
-  > * .location {
-    margin-right: @activity-session-label-margin;
 
-    > span.location-icon {
-      font-size: @activity-session-location-icon-size;
-      display: inline-block;
-
-      @media (min-width: @screen-sm-min) {
-        display: none;
-      }
-    }
-
-    > span.location-text {
-      display: none;
-
-      @media (min-width: @screen-sm-min) {
-        display: inline-block;
-      }
-    }
-  }*/
 }
 
 .details {
@@ -89,8 +80,10 @@ jp-activity-session {
 
 .firstSession {
   padding-top: @activity-session-item-firstSession;
+  max-height: 74px; // Temporary hardcoded hack...
 }
 
 .lastSession {
   padding-bottom: @activity-session-item-lastSession;
+  max-height: 74px; // Temporary hardcoded hack...
 }

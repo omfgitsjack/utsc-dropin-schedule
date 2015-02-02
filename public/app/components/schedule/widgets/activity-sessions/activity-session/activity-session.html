@@ -1,7 +1,12 @@
 <md-button class="md-button"
            md-no-ink
            ng-class="{firstSession: firstSession, lastSession: lastSession}"
-           ng-click="toggleShowDetails()">
+           ng-click="toggleShowDetails()"
+           analytics-on="click"
+           analytics-category="Activity Session Chosen"
+           analytics-event="{{session.start_time.format('ddd HH:mm:ss')}} - {{session.end_time.format('HH:mm:ss')}}"
+           analytics-label="Activity Session Chosen Label"
+        >
 
     <!-- Summary/Activity-session header -->
     <div>
@@ -11,14 +16,6 @@
                 jp-schedule-unavailable>
             {{day | amDateFormat:'ddd' | uppercase}}
         </label>
-
-        <!-- Time Range -->
-        <span class="numbers"
-              jp-schedule-unavailable>
-            <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
-            <div class="time-metric">-</div>
-            <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
-        </span>
 
         <!-- Toggle icon -->
         <span
@@ -32,6 +29,14 @@
                    ng-show="showDetails">
                 </i>
             </span>
+        </span>
+
+        <!-- Time Range -->
+        <span class="numbers"
+              jp-schedule-unavailable>
+            <div class="start">{{session.start_time | amDateFormat:'h:mm A'}}</div>
+            <div class="time-metric">-</div>
+            <div class="end">{{session.end_time | amDateFormat:'h:mm A'}}</div>
         </span>
 
         <!-- Header Summary (Displays participant count (Always) and location (If details are shown) -->
@@ -52,6 +57,5 @@
 </jp-participant-list>
 <jp-participant-join
         activity-session="session"
-        ng-show="showDetails"
-        ng-disable="">
+        ng-show="showDetails">
 </jp-participant-join>

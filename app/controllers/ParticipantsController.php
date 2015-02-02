@@ -17,15 +17,17 @@ class ParticipantsController extends \BaseController {
 	}
 
 	/**
-	 * Stores one participant, requires name and activity_session_id
+	 * Stores multiple participants, requires name and activity_session_id
 	 *
-	 * @param $participant
+	 * @param $activity_id
+	 * @param $session_id
 	 * @return mixed
-     */
-	public function storeOne($activity_id, $session_id)
+	 */
+	public function storeMultiple($activity_id, $session_id)
 	{
 		$input = Input::all();
 
-		return $this->participant->storeOne($session_id, $input['name']);
+		return $this->participant->storeMultiple($session_id, $input['names']);
 	}
+
 }

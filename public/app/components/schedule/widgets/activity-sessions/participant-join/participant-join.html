@@ -1,13 +1,20 @@
-<md-content md-theme="docs-dark" layout="row" layout-align="center end" >
-    <md-input-container
-            flex="70">
-        <label class="joinLabel" for="userIn">Name</label>
-        <input id="userIn" type="text" ng-model="user.name"/>
-    </md-input-container>
-    <div flex="5"></div>
-    <md-button
-            class="md-raised md-primary"
-            ng-click="join()"
-            ng-disabled="activitySession.created_at.isBefore(DateTimeService.now().startOf('day'))"
-            flex="25">Join</md-button>
+<md-content md-theme="docs-dark" >
+    <form ng-submit="join()" layout="row" layout-align="center end">
+        <md-input-container
+                flex="70">
+            <label class="joinLabel" for="userIn">Names (i.e. Jack, Alex)</label>
+            <input id="userIn" type="text" ng-model="user.name"/>
+        </md-input-container>
+        <div flex="5"></div>
+        <md-button
+                class="md-raised md-primary"
+                flex="25"
+                type="submit"
+                analytics-on="click"
+                analytics-category="Activity Session Joined"
+                analytics-event="{{user.name}}"
+                analytics-label="Activity Session Chosen Label">
+            Join
+        </md-button>
+    </form>
 </md-content>
