@@ -51,9 +51,6 @@
             vm.activityId = activitySessionsData.activity.id;
             vm.activityCategory = activitySessionsData.activity.category;
             vm.activityIsWomenOnly = activitySessionsData.activity.women_only;
-
-            // Display Toast
-            toastr.info("There are no dropins this week due to Pan Am Fencing Championships");
         }
 
     }

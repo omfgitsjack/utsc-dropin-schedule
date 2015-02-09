@@ -14,10 +14,6 @@
 
         function activate() {
             vm.activities = activitiesDataService.dropinActivities;
-            toastr.options.closeButton = true;
-            toastr.options.timeout = 30;
-            toastr.info("There are no dropins this week due to Pan Am Fencing Championships");
-
         }
     }
 
