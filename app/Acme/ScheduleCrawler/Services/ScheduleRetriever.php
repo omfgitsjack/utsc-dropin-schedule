@@ -45,6 +45,7 @@ class ScheduleRetriever implements IScheduleRetriever
 			->where('activity_id', $activityId)
 			->where('date', '>=', Carbon::now()->startOfWeek()->addWeeks($weeks))
 			->where('date', '<=', Carbon::now()->endOfWeek()->addWeeks($weeks))
+			->orderBy('date', 'ASC')
 			->get();
 
 		// Add Participants
