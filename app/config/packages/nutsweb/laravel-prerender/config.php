@@ -38,7 +38,7 @@
     |
     */
 
-    'prerender_token' => 'nBxd8Xhw9MmfSmdOLtaC',
+    'prerender_token' => 'qqZy3n2cFrSbpzk2itmC',
 
     /*
     |--------------------------------------------------------------------------
