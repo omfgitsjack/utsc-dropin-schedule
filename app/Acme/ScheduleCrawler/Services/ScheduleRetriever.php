@@ -38,7 +38,9 @@ class ScheduleRetriever implements IScheduleRetriever
 	{
 		// Get Latest CrawlSession
 		$latestCrawlSession = $this->crawlSession->getLatest();
-
+		
+		return $latestCrawlSession->activitySessions() // debugging
+		
 		// Get Activity Sessions
 		$activitySessions = $latestCrawlSession
 			->activitySessions()
