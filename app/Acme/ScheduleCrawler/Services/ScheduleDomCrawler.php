@@ -34,15 +34,49 @@ class ScheduleDomCrawler implements IScheduleCrawler
 	 */
 	public function crawlUTSCSchedule()
 	{
-		$utsc_link = 'http://www.utsc.utoronto.ca/athletics/calendar-node-field-date-time/month';
+		$utsc_base_route = 'http://www.utsc.utoronto.ca/athletics/calendar-node-field-date-time/month';
 
-		// Setup CrawlSession and Crawler objects
-		$crawlSession = $this->domCrawler->createCrawlSession($utsc_link);
-		$crawlObj = $this->domCrawler->getCrawlerObj($utsc_link);
-		
+		// Calculate the current month
+		$nextMonth = Carbon::now()->startOfMonth()->addMonth();
+		$nextMonthYearString = $nextMonth->year;
+
+		// Format the month portion of the query string correctly.
+		if ($nextMonth->month < 10) {
+			$nextMonthString = "0" . $nextMonth->month;
+		} else {
+			$nextMonthString = $nextMonth->month;
+		}
+
+		// Construct the query string
+		$nextMonthQueryFormat = "?mini=" . $nextMonthYearString . "-" . $nextMonthString;
+
+		// Create the links that correspond to the current & the subsequent month
+		$linkToCurMonthUTSCSchedule = $utsc_base_route;
+		$linkToNextMonthUTSCSchedule = $utsc_base_route . $nextMonthQueryFormat;
+
+		// Ready to crawl.
+		$crawlSession = $this->domCrawler->createCrawlSession();
+
 		// Start timing
 		$startTime = Carbon::now();
 		$this->crawlSession->updateStartTime($crawlSession, $startTime);
+
+		// Crawl through all relevant links
+		$this->crawlLink($linkToCurMonthUTSCSchedule, $crawlSession);
+		$this->crawlLink($linkToNextMonthUTSCSchedule, $crawlSession);
+
+		// End timing
+		$endTime = Carbon::now();
+		$this->crawlSession->updateEndTime($crawlSession, $endTime);
+		$this->crawlSession->updateDuration($crawlSession, $startTime->diffInSeconds($endTime));
+
+		return $crawlSession;
+	}
+
+	private function crawlLink($link, $crawlSession)
+	{
+		// Setup CrawlSession and Crawler objects
+		$crawlObj = $this->domCrawler->getCrawlerObj($link);
 
 		// Scrape for this month's activity sessions and activities
 		$activitySessions = $this->domCrawler->scrapeActivitySessions($crawlObj);
@@ -51,11 +85,6 @@ class ScheduleDomCrawler implements IScheduleCrawler
 		// Store activities & their sessions
 		$this->domCrawler->storeActivities($activities);
 		$this->domCrawler->storeActivitySessions($activitySessions, $crawlSession);
-
-		// End timing
-		$endTime = Carbon::now();
-		$this->crawlSession->updateEndTime($crawlSession, $endTime);
-		$this->crawlSession->updateDuration($crawlSession, $startTime->diffInSeconds($endTime));
 
 		return $crawlSession;
 	}
