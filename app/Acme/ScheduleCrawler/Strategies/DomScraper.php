@@ -165,7 +165,14 @@ class DomScraper implements IDomScraper
 		$parsedActivities = new Collection();
 
 		// Check if it's a session with two sports i.e. Badminton/Table Tennis
-		$activities = explode("/", $activityTitle);
+		if (strpos($activityTitle, "/") !== false) {
+            $activities = explode("/", $activityTitle);
+        } else if (strpos($activityTitle, "&")) {
+            $activities = explode("&", $activityTitle);
+        } else {
+            $activities = [$activityTitle];
+        }
+
 
 		foreach ($activities as $activity)
 		{
@@ -173,13 +180,13 @@ class DomScraper implements IDomScraper
 
 			if ($this->isWomenOnlyActivity($activity))
 			{
-				$formatted_activity['activity'] = $this->stripWomen($activity);
+				$formatted_activity['activity'] = trim($this->stripWomen($activity), " ");
 				$formatted_activity['category'] = $category;
 				$formatted_activity['women_only'] = true;
 			}
 			else
 			{
-				$formatted_activity['activity'] = $activity;
+				$formatted_activity['activity'] = trim($activity, " ");
 				$formatted_activity['category'] = $category;
 				$formatted_activity['women_only'] = false;
 			}
