@@ -118,7 +118,7 @@ class DomScraper implements IDomScraper
 	private function getActivitySessionFields($activitySession)
 	{
 		// Get fields
-		$fields = $activitySession->filter('.sched-term-4')->each(function($item, $i) {
+		$fields = $activitySession->filter('.sched-term-4')->filter('.views-field')->each(function($item, $i) {
 			
 			// Horrible way of retrieving content, cannot be helped because 
 			// location class tag has a trailing ']'
@@ -135,7 +135,7 @@ class DomScraper implements IDomScraper
 					return $times;
 				// Junk
 				case 2:
-					return "junk!";
+					return;
 				// Location
 				case 3:
 					return trim($item->text());
@@ -149,9 +149,6 @@ class DomScraper implements IDomScraper
 		$sessions = new Collection();
 
 		if (count($fields) > 0 and count($fields) < 5) { // There may not be drop-in sessions!
-			dd($fields);
-// 			echo count($fields);
-// 			echo implode(" ", $fields);
 			$activities = $this->parseActivities($fields[0], $fields[4]);
 			
 			foreach ($activities as $activity)
