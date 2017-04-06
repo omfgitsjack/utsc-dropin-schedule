@@ -67,8 +67,12 @@ class DomScraper implements IDomScraper
 	 */
 	private function getActivitySessionsForOneMonth($crawlerObj)
 	{
-		// Iterate through every day in current month
-		$days = $crawlerObj->filter('td.single-day')->each(function($curDay) {
+		// Iterate through every day that's non-empty in current month
+		// document.querySelectorAll('...') to test
+		$days = $crawlerObj->filter('
+			td.single-day.past:not(.empty):not(.no-entry), 
+			td.single-day.future:not(.empty):not(.no-entry), 
+			td.single-day.today:not(.empty):not(.no-entry)')->each(function($curDay) {
 
 			// Setup empty object to hold session values
 			$day = [
@@ -166,39 +170,44 @@ class DomScraper implements IDomScraper
 
 		// Check if it's a session with two sports i.e. Badminton/Table Tennis
 		if (strpos($activityTitle, "/") !== false) {
-            $activities = explode("/", $activityTitle);
-        } else if (strpos($activityTitle, "&")) {
-            $activities = explode("&", $activityTitle);
-        } else {
-            $activities = [$activityTitle];
-        }
-
-
+		    $activities = explode("/", $activityTitle);
+		} else if (strpos($activityTitle, "&")) {
+		    $activities = explode("&", $activityTitle);
+		} else {
+		    $activities = [$activityTitle];
+		}
+		
 		foreach ($activities as $activity)
 		{
 			$formatted_activity = [];
-
-			if ($this->isWomenOnlyActivity($activity))
-			{
-				$formatted_activity['activity'] = trim($this->stripWomen($activity), " ");
-				$formatted_activity['category'] = $category;
-				$formatted_activity['women_only'] = true;
-			}
-			else
-			{
-				$formatted_activity['activity'] = trim($activity, " ");
-				$formatted_activity['category'] = $category;
-				$formatted_activity['women_only'] = false;
-			}
+			
+			$formatted_activity['activity'] = trim($this->stripWristband($this->stripWomen($activity), " "));
+			$formatted_activity['category'] = $category;
+			$formatted_activity['women_only'] = $this->isWomenOnlyActivity($activity);
+			$formatted_activity['wristband_needed'] = $this->requiresWristband($activity);
 
 			$parsedActivities->push($formatted_activity);
 		}
 		return $parsedActivities;
 	}
+	
+	private function requiresWristband($activityTitle)
+	{
+		return str_contains($activityTitle, '(Wristband Required)');	
+	}
 
 	private function isWomenOnlyActivity($activityTitle)
 	{
 		return str_contains($activityTitle, 'Women');
+	}
+	
+	private function stripWristband($activityTitle)
+	{
+		if (ends_with(trim($activityTitle, " "), "(Wristband Required)") {
+			return trim(explode(" (Wristband Required)", trim($activityTitle, " "))[0]);
+		} else {
+			return $activityTitle;
+		}
 	}
 
 	private function stripWomen($activityTitle)
