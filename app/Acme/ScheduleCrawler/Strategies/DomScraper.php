@@ -147,10 +147,11 @@ class DomScraper implements IDomScraper
 
 		// Detect if there are multiple activities in one session
 		$sessions = new Collection();
-		return $fields;
+
 		if (count($fields) > 0 and count($fields) < 5) { // There may not be drop-in sessions!
-			echo count($fields);
-			echo implode(" ", $fields);
+			dd($fields);
+// 			echo count($fields);
+// 			echo implode(" ", $fields);
 			$activities = $this->parseActivities($fields[0], $fields[4]);
 			
 			foreach ($activities as $activity)
