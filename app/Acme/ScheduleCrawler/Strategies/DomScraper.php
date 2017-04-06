@@ -25,7 +25,7 @@ class DomScraper implements IDomScraper
 	{
 		$activitySessions = $this->getActivitySessionsForOneMonth($crawlerObj);
 
-		dd($activitySessions);
+		return $activitySessions;
 	}
 
 	/**
