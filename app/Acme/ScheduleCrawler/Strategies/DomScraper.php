@@ -203,7 +203,7 @@ class DomScraper implements IDomScraper
 	
 	private function stripWristband($activityTitle)
 	{
-		if (ends_with(trim($activityTitle, " "), "(Wristband Required)") {
+		if (ends_with(trim($activityTitle, " "), "(Wristband Required)")) {
 			return trim(explode(" (Wristband Required)", trim($activityTitle, " "))[0]);
 		} else {
 			return $activityTitle;
