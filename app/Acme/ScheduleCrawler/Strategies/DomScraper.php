@@ -135,7 +135,7 @@ class DomScraper implements IDomScraper
 					return $times;
 				// Junk
 				case 2:
-					return;
+					return "junk!";
 				// Location
 				case 3:
 					return trim($item->text());
