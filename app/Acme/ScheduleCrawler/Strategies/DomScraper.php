@@ -114,7 +114,7 @@ class DomScraper implements IDomScraper
 	private function getActivitySessionFields($activitySession)
 	{
 		// Get fields
-		$fields = $activitySession->filter('.views-field')->each(function($item, $i) {
+		$fields = $activitySession->filter('.sched-term-4')->each(function($item, $i) {
 			
 			// Horrible way of retrieving content, cannot be helped because 
 			// location class tag has a trailing ']'
