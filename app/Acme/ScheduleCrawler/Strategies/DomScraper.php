@@ -146,19 +146,22 @@ class DomScraper implements IDomScraper
 		});
 
 		// Detect if there are multiple activities in one session
-		$activities = $this->parseActivities($fields[0], $fields[4]);
 		$sessions = new Collection();
-		foreach ($activities as $activity)
-		{
-			$formattedFields = [
-				'activity'   => $activity['activity'],
-				'start_time' => (new \DateTime($fields[1][1]))->format('Y-m-d H:i:s'),
-				'end_time'   => (new \DateTime($fields[1][2]))->format('Y-m-d H:i:s'),
-				'location'   => $fields[3],
-				'category'   => $fields[4],
-				'women_only' => $activity['women_only']
-			];
-			$sessions->push($formattedFields);
+		if (count($fields) > 0) { // There may not be drop-in sessions!
+			$activities = $this->parseActivities($fields[0], $fields[4]);
+			
+			foreach ($activities as $activity)
+			{
+				$formattedFields = [
+					'activity'   => $activity['activity'],
+					'start_time' => (new \DateTime($fields[1][1]))->format('Y-m-d H:i:s'),
+					'end_time'   => (new \DateTime($fields[1][2]))->format('Y-m-d H:i:s'),
+					'location'   => $fields[3],
+					'category'   => $fields[4],
+					'women_only' => $activity['women_only']
+				];
+				$sessions->push($formattedFields);
+			}
 		}
 
 		return $sessions;
